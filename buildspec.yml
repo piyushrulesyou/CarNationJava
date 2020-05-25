@@ -13,6 +13,5 @@ phases:
     - mvn package
 artifacts:
   files:
-  - appspec.yml
   - target/vehicle-listing-0.0.1-SNAPSHOT.war
   - scripts/*
