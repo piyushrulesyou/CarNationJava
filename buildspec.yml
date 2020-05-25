@@ -1,18 +1,18 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
       java: openjdk8
     commands:
-      # Upgrade AWS CLI to the latest version
-      - pip install --upgrade awscli
+    - pip install --upgrade awscli
   pre_build:
     commands:
-      - mvn clean compile test
+    - mvn clean compile test
   build:
     commands:
-      - mvn war:exploded
-  post_build:
-    commands:
-      - cp -r .ebextensions/ target/ROOT/
+    - mvn package
+artifacts:
+  files:
+  - appspec.yml
+  - target/SampleMavenTomcatApp.war
+  - scripts/*
