@@ -14,5 +14,5 @@ phases:
 artifacts:
   files:
   - appspec.yml
-  - target/SampleMavenTomcatApp.war
+  - target/vehicle-listing-0.0.1-SNAPSHOT.war
   - scripts/*
