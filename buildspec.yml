@@ -10,7 +10,7 @@ phases:
     - mvn clean compile test
   build:
     commands:
-    - mvn package
+    - mvn war:exploded
 artifacts:
   files:
   - target/vehicle-listing-0.0.1-SNAPSHOT.war
