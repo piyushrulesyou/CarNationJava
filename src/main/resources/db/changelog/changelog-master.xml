@@ -5,7 +5,58 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
+	<include file="/db/changelog/changes/create-table-car-type.xml" />
+	<include
+		file="/db/changelog/changes/create-table-fuel-type.xml" />
+	<include file="/db/changelog/changes/create-table-model.xml" />
+	<include
+		file="/db/changelog/changes/create-table-price-master.xml" />
+	<include file="/db/changelog/changes/create-table-producer.xml" />
+	<include
+		file="/db/changelog/changes/create-table-transmission-type.xml" />
+	<include file="/db/changelog/changes/create-table-variant.xml" />
 	<include
 		file="/db/changelog/changes/create-table-vehicle-inventory.xml" />
-
+	<include file="/db/changelog/changes/insert-table-car-type.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-fuel-type.xml" />
+	<include file="/db/changelog/changes/insert-table-model.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-price-master.xml" />
+	<include file="/db/changelog/changes/insert-table-producer.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-transmission-type.xml" />
+	<include file="/db/changelog/changes/insert-table-variant.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-vehicle-inventory.xml" />
+	<include
+		file="/db/changelog/changes/create-table-city-master.xml" />
+	<include
+		file="/db/changelog/changes/create-table-color-master.xml" />
+	<include
+		file="/db/changelog/changes/create-table-tenure-price-master.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-city-master.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-color-master.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-tenure-price-master.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-vehicle-inventory-2.xml" />
+	<include
+		file="/db/changelog/changes/alter-table-vehicle-inventory.xml" />
+	<include
+		file="/db/changelog/changes/create-table-vehicle-inventory-city-master-manytomany.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-vehicle-inventory-city-master-manytomany.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-city-master-2.xml" />
+	<include
+		file="/db/changelog/changes/create-table-vehicle-inventory-color-master-manytomany.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-vehicle-inventory-color-master-manytomany.xml" />
+	<include
+		file="/db/changelog/changes/create-table-vehicle-inventory-tenure-master-manytomany.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-vehicle-inventory-tenure-master-manytomany.xml" />
 </databaseChangeLog>

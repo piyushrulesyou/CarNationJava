@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="piyush" id="insert-table-city-master-2">
+
+		<insert tableName="city_master">
+			<column name="city_code" value="BLR" />
+			<column name="city_name" value="Bangalore" />
+			<column name="created_date" value="2020-05-23 00:00:00" />
+			<column name="modified_date" value="2020-05-23 00:00:00" />
+			<column name="created_by" value="piyush" />
+			<column name="modified_by" value="piyush" />
+		</insert>
+		<insert tableName="city_master">
+			<column name="city_code" value="NDA" />
+			<column name="city_name" value="Noida" />
+			<column name="created_date" value="2020-05-23 00:00:00" />
+			<column name="modified_date" value="2020-05-23 00:00:00" />
+			<column name="created_by" value="piyush" />
+			<column name="modified_by" value="piyush" />
+		</insert>
+		<insert tableName="city_master">
+			<column name="city_code" value="GHZ" />
+			<column name="city_name" value="Ghaziabad" />
+			<column name="created_date" value="2020-05-23 00:00:00" />
+			<column name="modified_date" value="2020-05-23 00:00:00" />
+			<column name="created_by" value="piyush" />
+			<column name="modified_by" value="piyush" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

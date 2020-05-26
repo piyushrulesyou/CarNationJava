@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="piyush"
+		id="create-table-tenure-price-master">
+
+		<createTable tableName="tenure_price_master"
+			schemaName="public">
+			<column name="tenure_duration" type="VARCHAR">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="price_multiplier" type="float">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_by" type="VARCHAR" />
+			<column name="created_date" type="TIMESTAMP" />
+			<column name="modified_by" type="VARCHAR" />
+			<column name="modified_date" type="TIMESTAMP" />
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

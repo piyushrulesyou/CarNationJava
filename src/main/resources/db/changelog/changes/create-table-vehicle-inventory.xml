@@ -7,27 +7,89 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<changeSet author="piyush"
-		id="create-table-vehicle-inventory.xml">
+		id="create-table-vehicle-inventory">
 
 		<createTable tableName="vehicle_inventory"
 			schemaName="public">
 			<column name="id" type="VARCHAR">
 				<constraints primaryKey="true" />
 			</column>
-			<column name="name" type="VARCHAR" />
-			<column name="variant" type="VARCHAR" />
-			<column name="fuel_type" type="Date" />
-			<column name="transmission" type="INT" />
-			<column name="color" type="VARCHAR" />
-			<column name="car-type" type="VARCHAR" />
-			<column name="seats" type="VARCHAR" />
-			<column name="producer" type="VARCHAR" />
-			<column name="model" type="float" />
-			<column name="payment_log_id" type="INT" />
-			<column name="car_model_id" type="TIMESTAMP" />
-			<column name="price" type="TIMESTAMP" />
+			<column name="variant_fkid" type="VARCHAR" />
+			<column name="model_fkid" type="VARCHAR" />
+			<column name="fuel_type_fkid" type="VARCHAR" />
+			<column name="transmission_type_fkid" type="VARCHAR" />
+			<column name="car_type_fkid" type="VARCHAR" />
+			<column name="seats" type="VARCHAR">
+				<constraints nullable="false" />
+			</column>
+			<column name="producer_fkid" type="VARCHAR" />
+			<column name="sort_order" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="full_size_image" type="VARCHAR">
+				<constraints nullable="false" />
+			</column>
+			<column name="small_size_image" type="VARCHAR">
+				<constraints nullable="false" />
+			</column>
+			<column name="is_popular" type="BOOLEAN">
+				<constraints nullable="false" />
+			</column>
+			<column name="extra_km_charge" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="price_fkid" type="VARCHAR" />
+			<column name="insurance_cost" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="security_deposit" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="show_variant" type="BOOLEAN">
+				<constraints nullable="false" />
+			</column>
 			<column name="created_by" type="VARCHAR" />
+			<column name="created_date" type="TIMESTAMP" />
 			<column name="modified_by" type="VARCHAR" />
+			<column name="modified_date" type="TIMESTAMP" />
 		</createTable>
+		<addForeignKeyConstraint
+			baseColumnNames="variant_fkid" baseTableName="vehicle_inventory"
+			baseTableSchemaName="public" constraintName="variant_fkid"
+			referencedColumnNames="variant_code"
+			referencedTableName="variant_type" referencedTableSchemaName="public" />
+		<addForeignKeyConstraint
+			baseColumnNames="model_fkid" baseTableName="vehicle_inventory"
+			baseTableSchemaName="public" constraintName="model_fkid"
+			referencedColumnNames="model_code" referencedTableName="model_type"
+			referencedTableSchemaName="public" />
+		<addForeignKeyConstraint
+			baseColumnNames="fuel_type_fkid" baseTableName="vehicle_inventory"
+			baseTableSchemaName="public" constraintName="fuel_type_fkid"
+			referencedColumnNames="fuel_code" referencedTableName="fuel_type"
+			referencedTableSchemaName="public" />
+		<addForeignKeyConstraint
+			baseColumnNames="transmission_type_fkid"
+			baseTableName="vehicle_inventory" baseTableSchemaName="public"
+			constraintName="transmission_type_fkid"
+			referencedColumnNames="transmission_type_code"
+			referencedTableName="transmission_type"
+			referencedTableSchemaName="public" />
+		<addForeignKeyConstraint
+			baseColumnNames="car_type_fkid" baseTableName="vehicle_inventory"
+			baseTableSchemaName="public" constraintName="car_type_fkid"
+			referencedColumnNames="car_type_code" referencedTableName="car_type"
+			referencedTableSchemaName="public" />
+		<addForeignKeyConstraint
+			baseColumnNames="producer_fkid" baseTableName="vehicle_inventory"
+			baseTableSchemaName="public" constraintName="producer_fkid"
+			referencedColumnNames="producer_code"
+			referencedTableName="producer_company"
+			referencedTableSchemaName="public" />
+		<addForeignKeyConstraint
+			baseColumnNames="price_fkid" baseTableName="vehicle_inventory"
+			baseTableSchemaName="public" constraintName="price_fkid"
+			referencedColumnNames="base_price" referencedTableName="price_master"
+			referencedTableSchemaName="public" />
 	</changeSet>
 </databaseChangeLog>

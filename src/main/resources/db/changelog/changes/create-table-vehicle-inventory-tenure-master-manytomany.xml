@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="piyush"
+		id="create-table-vehicle-inventory-tenure-master-manytomany">
+
+		<createTable tableName="vehicle_tenure_manytomany"
+			schemaName="public">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="vehicle_inventory_fkid" type="VARCHAR" />
+			<column name="tenure_master_fkid" type="VARCHAR" />
+		</createTable>
+		<addForeignKeyConstraint
+			baseColumnNames="vehicle_inventory_fkid"
+			baseTableName="vehicle_tenure_manytomany"
+			baseTableSchemaName="public" constraintName="vehicle_inventory_fkid"
+			referencedColumnNames="id" referencedTableName="vehicle_inventory"
+			referencedTableSchemaName="public" />
+		<addForeignKeyConstraint
+			baseColumnNames="tenure_master_fkid"
+			baseTableName="vehicle_tenure_manytomany"
+			baseTableSchemaName="public" constraintName="tenure_master_fkid"
+			referencedColumnNames="tenure_duration"
+			referencedTableName="tenure_price_master"
+			referencedTableSchemaName="public" />
+	</changeSet>
+</databaseChangeLog>

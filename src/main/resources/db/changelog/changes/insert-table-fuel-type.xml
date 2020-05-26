@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="piyush" id="insert-table-fuel-type">
+
+		<insert tableName="fuel_type">
+			<column name="fuel_code" value="PET" />
+			<column name="fuel_name" value="Petrol" />
+			<column name="created_date" value="2020-05-23 00:00:00" />
+			<column name="modified_date" value="2020-05-23 00:00:00" />
+			<column name="created_by" value="piyush" />
+			<column name="modified_by" value="piyush" />
+		</insert>
+		<insert tableName="fuel_type">
+			<column name="fuel_code" value="DIE" />
+			<column name="fuel_name" value="Diesel" />
+			<column name="created_date" value="2020-05-23 00:00:00" />
+			<column name="modified_date" value="2020-05-23 00:00:00" />
+			<column name="created_by" value="piyush" />
+			<column name="modified_by" value="piyush" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

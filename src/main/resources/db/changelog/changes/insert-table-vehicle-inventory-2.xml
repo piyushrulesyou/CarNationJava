@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="piyush"
+		id="insert-table-vehicle-inventory-2">
+
+		<insert tableName="vehicle_inventory">
+			<column name="id" value="def456" />
+			<column name="variant_fkid" value="zxi" />
+			<column name="model_fkid" value="i10" />
+			<column name="fuel_type_fkid" value="PET" />
+			<column name="transmission_type_fkid" value="MAN" />
+			<column name="car_type_fkid" value="HatchBack" />
+			<column name="seats" value="4" />
+			<column name="producer_fkid" value="Hyundai" />
+			<column name="sort_order" value="3" />
+			<column name="full_size_image" value="IMAGE_LINK_FULL" />
+			<column name="small_size_image" value="IMAGE_LINK_SMALL" />
+			<column name="is_popular" value="true" />
+			<column name="extra_km_charge" value="7" />
+			<column name="insurance_cost" value="2500" />
+			<column name="security_deposit" value="60000" />
+			<column name="show_variant" value="true" />
+			<column name="created_by" value="piyush" />
+			<column name="created_date" value="2020-05-23 00:00:00" />
+			<column name="modified_by" value="piyush" />
+			<column name="modified_date" value="2020-05-23 00:00:00" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

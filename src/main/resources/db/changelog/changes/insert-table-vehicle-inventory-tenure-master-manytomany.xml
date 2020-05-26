@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="piyush"
+		id="insert-table-vehicle-inventory-tenure-master-manytomany">
+
+		<insert tableName="vehicle_tenure_manytomany">
+			<column name="vehicle_inventory_fkid" value="abc123" />
+			<column name="tenure_master_fkid" value="3" />
+		</insert>
+		<insert tableName="vehicle_tenure_manytomany">
+			<column name="vehicle_inventory_fkid" value="abc123" />
+			<column name="tenure_master_fkid" value="6" />
+		</insert>
+		<insert tableName="vehicle_tenure_manytomany">
+			<column name="vehicle_inventory_fkid" value="abc123" />
+			<column name="tenure_master_fkid" value="12" />
+		</insert>
+		<insert tableName="vehicle_tenure_manytomany">
+			<column name="vehicle_inventory_fkid" value="abc123" />
+			<column name="tenure_master_fkid" value="18" />
+		</insert>
+		<insert tableName="vehicle_tenure_manytomany">
+			<column name="vehicle_inventory_fkid" value="abc123" />
+			<column name="tenure_master_fkid" value="24" />
+		</insert>
+		<insert tableName="vehicle_tenure_manytomany">
+			<column name="vehicle_inventory_fkid" value="abc123" />
+			<column name="tenure_master_fkid" value="36" />
+		</insert>
+		<insert tableName="vehicle_tenure_manytomany">
+			<column name="vehicle_inventory_fkid" value="def456" />
+			<column name="tenure_master_fkid" value="12" />
+		</insert>
+		<insert tableName="vehicle_tenure_manytomany">
+			<column name="vehicle_inventory_fkid" value="def456" />
+			<column name="tenure_master_fkid" value="18" />
+		</insert>
+		<insert tableName="vehicle_tenure_manytomany">
+			<column name="vehicle_inventory_fkid" value="def456" />
+			<column name="tenure_master_fkid" value="24" />
+		</insert>
+		<insert tableName="vehicle_tenure_manytomany">
+			<column name="vehicle_inventory_fkid" value="def456" />
+			<column name="tenure_master_fkid" value="36" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>
