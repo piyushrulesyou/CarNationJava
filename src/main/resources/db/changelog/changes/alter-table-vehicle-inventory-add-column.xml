@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="piyush"
+		id="alter-table-vehicle-inventory-add-column">
+		<addColumn tableName="vehicle_inventory">
+			<column name="price_fkid" type="VARCHAR"/>
+		</addColumn>
+		<addForeignKeyConstraint
+			baseColumnNames="price_fkid" baseTableName="vehicle_inventory"
+			baseTableSchemaName="public" constraintName="price_fkid"
+			referencedColumnNames="base_price" referencedTableName="price_master"
+			referencedTableSchemaName="public" />
+	</changeSet>
+</databaseChangeLog>

@@ -2,10 +2,13 @@ package com.carrentingservice.vehiclelisting.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,31 +26,35 @@ public class VehicleInventoryEntity implements Serializable {
 	private String id;
 
 	@ManyToOne
-	@Column(name = "variant_fkid")
+	@JoinColumn(name = "variant_fkid", referencedColumnName = "variant_code")
 	private VariantTypeEntity variant;
 
 	@ManyToOne
-	@Column(name = "model_fkid")
+	@JoinColumn(name = "model_fkid", referencedColumnName = "model_code")
 	private ModelTypeEntity model;
 
 	@ManyToOne
-	@Column(name = "fuel_type_fkid")
+	@JoinColumn(name = "fuel_type_fkid", referencedColumnName = "fuel_code")
 	private FuelTypeEntity fuelType;
 
 	@ManyToOne
-	@Column(name = "transmission_type_fkid")
+	@JoinColumn(name = "transmission_type_fkid", referencedColumnName = "transmission_type_code")
 	private TransmissionTypeEntity transmissionType;
 
+	@ManyToMany
+//	@JoinTable(name = "vehicle_color_manytomany", joinColumns = @JoinColumn(name = "vehicle_inventory_fkid", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "color_master_fkid", referencedColumnName = "color_code"))
+	private List<ColorMasterEntity> colorMaster;
+
 	@ManyToOne
-	@Column(name = "car_type_fkid")
+	@JoinColumn(name = "car_type_fkid", referencedColumnName = "car_type_code")
 	private CarTypeEntity carType;
 
 	@Column(name = "seats")
 	private String seats;
 
 	@ManyToOne
-	@Column(name = "producer_fkid")
-	private ProducerEntity producer;
+	@JoinColumn(name = "producer_fkid", referencedColumnName = "producer_code")
+	private ProducerTypeEntity producer;
 
 	@Column(name = "sort_order")
 	private long sortOrder;
@@ -64,14 +71,24 @@ public class VehicleInventoryEntity implements Serializable {
 	@Column(name = "extra_km_charge")
 	private long extraKmCharge;
 
+	@ManyToOne
+	@JoinColumn(name = "price_fkid", referencedColumnName = "base_price")
+	private PriceMasterEntity priceMaster;
+
 	@Column(name = "insurance_cost")
 	private long insuranceCost;
+
+	@ManyToMany
+	private List<CityMasterEntity> cityMaster;
 
 	@Column(name = "security_deposit")
 	private long securityDeposit;
 
 	@Column(name = "show_variant")
 	private boolean showVariant;
+
+	@ManyToMany
+	private List<TenurePriceMasterEntity> tenureMaster;
 
 	@Column(name = "created_by")
 	private String createdBy;

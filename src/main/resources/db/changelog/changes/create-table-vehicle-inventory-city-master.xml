@@ -7,28 +7,27 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<changeSet author="piyush"
-		id="create-table-vehicle-inventory-tenure-master-manytomany">
+		id="create-table-vehicle-inventory-city-master">
 
-		<createTable tableName="vehicle_tenure_manytomany"
+		<createTable tableName="vehicle_inventory_city_master"
 			schemaName="public">
-			<column autoIncrement="true" name="id" type="BIGINT">
-				<constraints primaryKey="true" />
-			</column>
-			<column name="vehicle_inventory_fkid" type="VARCHAR" />
-			<column name="tenure_master_fkid" type="VARCHAR" />
+			<column name="vehicle_inventory_id" type="VARCHAR" />
+			<column name="city_master_city_code" type="VARCHAR" />
 		</createTable>
 		<addForeignKeyConstraint
-			baseColumnNames="vehicle_inventory_fkid"
-			baseTableName="vehicle_tenure_manytomany"
+			baseColumnNames="vehicle_inventory_id"
+			baseTableName="vehicle_inventory_city_master"
 			baseTableSchemaName="public" constraintName="vehicle_inventory_fkid"
 			referencedColumnNames="id" referencedTableName="vehicle_inventory"
 			referencedTableSchemaName="public" />
 		<addForeignKeyConstraint
-			baseColumnNames="tenure_master_fkid"
-			baseTableName="vehicle_tenure_manytomany"
-			baseTableSchemaName="public" constraintName="tenure_master_fkid"
-			referencedColumnNames="tenure_duration"
-			referencedTableName="tenure_price_master"
+			baseColumnNames="city_master_city_code"
+			baseTableName="vehicle_inventory_city_master"
+			baseTableSchemaName="public" constraintName="city_master_fkid"
+			referencedColumnNames="city_code" referencedTableName="city_master"
 			referencedTableSchemaName="public" />
+		<addPrimaryKey tableName="vehicle_inventory_city_master"
+			columnNames="vehicle_inventory_id, city_master_city_code"
+			constraintName="vehicle_city_fk" />
 	</changeSet>
 </databaseChangeLog>
