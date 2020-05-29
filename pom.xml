@@ -105,11 +105,6 @@
 					</compilerArgs>
 				</configuration>
 			</plugin>
-
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 046a0ec6ed2ee70815e91a2c46abea2b7a7cd40d
 		</plugins>
 	</build>
 </project>
