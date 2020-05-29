@@ -8,11 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "price_master")
 public class PriceMasterEntity implements Serializable {
@@ -40,4 +42,8 @@ public class PriceMasterEntity implements Serializable {
 
 	@Column(name = "modified_date")
 	private Date modifiedDate;
+
+	public PriceMasterEntity(String basePrice) {
+		this.basePrice = basePrice;
+	}
 }

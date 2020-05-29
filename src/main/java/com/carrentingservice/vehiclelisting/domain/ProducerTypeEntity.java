@@ -8,10 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "producer_company")
@@ -37,4 +39,8 @@ public class ProducerTypeEntity implements Serializable {
 
 	@Column(name = "modified_date")
 	private Date modifiedDate;
+
+	public ProducerTypeEntity(String producerCode) {
+		this.producerCode = producerCode;
+	}
 }

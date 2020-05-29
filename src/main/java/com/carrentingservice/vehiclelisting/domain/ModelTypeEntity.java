@@ -8,11 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "model_type")
 public class ModelTypeEntity implements Serializable {
@@ -37,4 +39,8 @@ public class ModelTypeEntity implements Serializable {
 
 	@Column(name = "modified_date")
 	private Date modifiedDate;
+
+	public ModelTypeEntity(String modelCode) {
+		this.modelCode = modelCode;
+	}
 }

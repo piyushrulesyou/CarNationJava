@@ -12,11 +12,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "color_master")
 public class ColorMasterEntity implements Serializable {
@@ -48,4 +50,8 @@ public class ColorMasterEntity implements Serializable {
 
 	@Column(name = "modified_date")
 	private Date modifiedDate;
+
+	public ColorMasterEntity(String colorCode) {
+		this.colorCode = colorCode;
+	}
 }

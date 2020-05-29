@@ -101,4 +101,8 @@ public class VehicleInventoryEntity implements Serializable {
 
 	@Column(name = "modified_date")
 	private Date modifiedDate;
+
+	public VehicleInventoryEntity(String id) {
+		this.id = id;
+	}
 }
