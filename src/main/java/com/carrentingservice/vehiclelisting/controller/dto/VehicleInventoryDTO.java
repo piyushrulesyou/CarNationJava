@@ -4,17 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import com.carrentingservice.vehiclelisting.domain.CarTypeEntity;
-import com.carrentingservice.vehiclelisting.domain.CityMasterEntity;
-import com.carrentingservice.vehiclelisting.domain.ColorMasterEntity;
-import com.carrentingservice.vehiclelisting.domain.FuelTypeEntity;
-import com.carrentingservice.vehiclelisting.domain.ModelTypeEntity;
-import com.carrentingservice.vehiclelisting.domain.PriceMasterEntity;
-import com.carrentingservice.vehiclelisting.domain.ProducerTypeEntity;
-import com.carrentingservice.vehiclelisting.domain.TenurePriceMasterEntity;
-import com.carrentingservice.vehiclelisting.domain.TransmissionTypeEntity;
-import com.carrentingservice.vehiclelisting.domain.VariantTypeEntity;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,21 +16,21 @@ public class VehicleInventoryDTO implements Serializable {
 
 	private String id;
 
-	private VariantTypeEntity variant;
+	private VariantTypeDTO variant;
 
-	private ModelTypeEntity model;
+	private ModelTypeDTO model;
 
-	private FuelTypeEntity fuelType;
+	private FuelTypeDTO fuelType;
 
-	private TransmissionTypeEntity transmissionType;
+	private TransmissionTypeDTO transmissionType;
 
-	private List<ColorMasterEntity> colorMaster;
+	private List<ColorMasterDTO> colorMaster;
 
-	private CarTypeEntity carType;
+	private CarTypeDTO carType;
 
 	private String seats;
 
-	private ProducerTypeEntity producer;
+	private ProducerTypeDTO producer;
 
 	private long sortOrder;
 
@@ -53,17 +42,17 @@ public class VehicleInventoryDTO implements Serializable {
 
 	private long extraKmCharge;
 
-	private PriceMasterEntity priceMaster;
+	private PriceMasterDTO priceMaster;
 
 	private long insuranceCost;
 
-	private List<CityMasterEntity> cityMaster;
+	private List<CityMasterDTO> cityMaster;
 
 	private long securityDeposit;
 
 	private boolean showVariant;
 
-	private List<TenurePriceMasterEntity> tenureMaster;
+	private List<TenurePriceMasterDTO> tenureMaster;
 
 	private String createdBy;
 
