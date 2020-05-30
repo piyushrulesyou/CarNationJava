@@ -9,10 +9,13 @@ phases:
   build:
     commands:
     - echo Build started on `date`
-    - mvn package
   post_build:
     commands:
     - echo Build completed on `date`
+    - mvn package
+    - mv target/vehicle-listing-0.0.1-SNAPSHOT.war
 artifacts:
   files:
-  - target/vehicle-listing-0.0.1-SNAPSHOT.jar
+  - vehicle-listing-0.0.1-SNAPSHOT.war
+  - .ebextensions/**/*
+  base-directory: target/VehicleListingAPI
