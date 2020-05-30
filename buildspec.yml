@@ -6,7 +6,6 @@ phases:
   pre_build:
     commands:
     - echo In the pre_build phase...
-    - mvn clean compile test
   build:
     commands:
     - echo Build started on `date`
@@ -17,4 +16,3 @@ phases:
 artifacts:
   files:
   - target/vehicle-listing-0.0.1-SNAPSHOT.war
-  - scripts/*
