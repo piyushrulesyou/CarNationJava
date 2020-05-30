@@ -6,11 +6,10 @@ phases:
   pre_build:
     commands:
     - echo In the pre_build phase...
-    - mvn clean compile test
   build:
     commands:
     - echo Build started on `date`
-    - mvn war:exploded
+    - mvn clean install
   post_build:
     commands:
     - echo Build completed on `date`
