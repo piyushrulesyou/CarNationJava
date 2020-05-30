@@ -6,6 +6,7 @@ phases:
   pre_build:
     commands:
     - echo In the pre_build phase...
+    - mvn clean compile test
   build:
     commands:
     - echo Build started on `date`
@@ -13,6 +14,7 @@ phases:
   post_build:
     commands:
     - echo Build completed on `date`
+    - cp -r .ebextensions/ target/ROOT/
 artifacts:
   files:
   - target/vehicle-listing-0.0.1-SNAPSHOT.war
