@@ -15,4 +15,4 @@ phases:
     - echo Build completed on `date`
 artifacts:
   files:
-  - target/vehicle-listing-0.0.1-SNAPSHOT.war
+  - target/vehicle-listing-0.0.1-SNAPSHOT.jar
