@@ -13,4 +13,6 @@ public interface VehicleInventoryMapper {
 
 	public List<VehicleInventoryDTO> toVehicleInventoryDTO(List<VehicleInventoryEntity> vehicleInventoryEntity);
 
+	public VehicleInventoryDTO toVehicleInventoryDTO(VehicleInventoryEntity vehicleInventoryEntity);
+
 }

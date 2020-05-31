@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,10 +22,19 @@ public class VehicleInventoryController {
 	@Autowired
 	private VehicleInventoryDelegate vehicleInventoryDelegate;
 
-	@GetMapping(value = "/vehicle-inventory")
+	@GetMapping(value = "/get-vehicle")
 	public ResponseEntity<ResponseTO<List<VehicleInventoryDTO>>> getVehicleInventory() throws Exception {
 		ResponseTO<List<VehicleInventoryDTO>> responseTO = new ResponseTO<>();
 		List<VehicleInventoryDTO> vehicleInventory = vehicleInventoryDelegate.getVehicleInventory();
+		responseTO.setData(vehicleInventory);
+		return new ResponseEntity<>(responseTO, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/get-vehicle/{vehicleId}")
+	public ResponseEntity<ResponseTO<VehicleInventoryDTO>> getVehicleInventoryById(
+			@PathVariable("vehicleId") String vehicleId) throws Exception {
+		ResponseTO<VehicleInventoryDTO> responseTO = new ResponseTO<>();
+		VehicleInventoryDTO vehicleInventory = vehicleInventoryDelegate.getVehicleInventoryById(vehicleId);
 		responseTO.setData(vehicleInventory);
 		return new ResponseEntity<>(responseTO, HttpStatus.OK);
 	}

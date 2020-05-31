@@ -2,6 +2,7 @@ package com.carrentingservice.vehiclelisting.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -57,6 +58,16 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 			throw new Exception();
 		}
 		return vehicleInventoryMapper.toVehicleInventoryDTO(vehicleInventoryEntity);
+	}
+
+	@Override
+	public VehicleInventoryDTO getVehicleInventoryById(String vehicleId) throws Exception {
+		Optional<VehicleInventoryEntity> vehicleInventoryEntity = vehicleInventoryRepo.findById(vehicleId);
+
+		if (!vehicleInventoryEntity.isPresent()) {
+			throw new Exception();
+		}
+		return vehicleInventoryMapper.toVehicleInventoryDTO(vehicleInventoryEntity.get());
 	}
 
 	@Override

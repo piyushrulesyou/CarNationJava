@@ -19,6 +19,10 @@ public class VehicleInventoryDelegate {
 		return vehicleInventoryService.getVehicleInventory();
 	}
 
+	public VehicleInventoryDTO getVehicleInventoryById(String vehicleId) throws Exception {
+		return vehicleInventoryService.getVehicleInventoryById(vehicleId);
+	}
+
 	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails) {
 		return vehicleInventoryService.addInventory(inventoryDetails);
 	}
