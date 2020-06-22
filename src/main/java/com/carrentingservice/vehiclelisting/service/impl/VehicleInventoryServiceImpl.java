@@ -9,13 +9,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.carrentingservice.vehiclelisting.constants.ErrorConstants;
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryRequestDTO;
 import com.carrentingservice.vehiclelisting.controller.dto.VehicleInventoryDTO;
 import com.carrentingservice.vehiclelisting.domain.CarTypeEntity;
 import com.carrentingservice.vehiclelisting.domain.CityMasterEntity;
 import com.carrentingservice.vehiclelisting.domain.ColorMasterEntity;
 import com.carrentingservice.vehiclelisting.domain.FuelTypeEntity;
-import com.carrentingservice.vehiclelisting.domain.ModelTypeEntity;
 import com.carrentingservice.vehiclelisting.domain.PriceMasterEntity;
 import com.carrentingservice.vehiclelisting.domain.ProducerTypeEntity;
 import com.carrentingservice.vehiclelisting.domain.TenurePriceMasterEntity;
@@ -25,6 +25,7 @@ import com.carrentingservice.vehiclelisting.domain.VehicleInventoryEntity;
 import com.carrentingservice.vehiclelisting.domain.relationship.InventoryCityMasterEntity;
 import com.carrentingservice.vehiclelisting.domain.relationship.InventoryColorMasterEntity;
 import com.carrentingservice.vehiclelisting.domain.relationship.InventoryTenureMasterEntity;
+import com.carrentingservice.vehiclelisting.exceptions.RecordNotFoundException;
 import com.carrentingservice.vehiclelisting.repo.InventoryCityMasterRepo;
 import com.carrentingservice.vehiclelisting.repo.InventoryColorMasterRepo;
 import com.carrentingservice.vehiclelisting.repo.InventoryTenureMasterRepo;
@@ -55,7 +56,9 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		List<VehicleInventoryEntity> vehicleInventoryEntity = vehicleInventoryRepo.findAll();
 
 		if (vehicleInventoryEntity.isEmpty()) {
-			throw new Exception();
+			throw new RecordNotFoundException("Error occured in method " + " getVehicleInventory() " + " of class "
+					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.NOT_FOUND_ERROR_CODE
+					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND + ".");
 		}
 		return vehicleInventoryMapper.toVehicleInventoryDTO(vehicleInventoryEntity);
 	}
@@ -65,7 +68,9 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		Optional<VehicleInventoryEntity> vehicleInventoryEntity = vehicleInventoryRepo.findById(vehicleId);
 
 		if (!vehicleInventoryEntity.isPresent()) {
-			throw new Exception();
+			throw new RecordNotFoundException("Error occured in method " + " getVehicleInventory() " + " of class "
+					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.NOT_FOUND_ERROR_CODE
+					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND + ".");
 		}
 		return vehicleInventoryMapper.toVehicleInventoryDTO(vehicleInventoryEntity.get());
 	}
@@ -117,7 +122,7 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 	private VehicleInventoryEntity mapVehicleDtoTOEntity(InventoryRequestDTO inventoryDetails) {
 		VehicleInventoryEntity vehicleInventoryEntity = new VehicleInventoryEntity();
 		vehicleInventoryEntity.setId(inventoryDetails.getId());
-		vehicleInventoryEntity.setModel(new ModelTypeEntity(inventoryDetails.getModel()));
+		vehicleInventoryEntity.setModel(inventoryDetails.getModel());
 		vehicleInventoryEntity.setVariant(new VariantTypeEntity(inventoryDetails.getVariant()));
 		vehicleInventoryEntity.setFuelType(new FuelTypeEntity(inventoryDetails.getFuelType()));
 		vehicleInventoryEntity.setTransmissionType(new TransmissionTypeEntity(inventoryDetails.getTransmissionType()));

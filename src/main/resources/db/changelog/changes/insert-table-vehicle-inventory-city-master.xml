@@ -10,23 +10,67 @@
 		id="insert-table-vehicle-inventory-city-master">
 
 		<insert tableName="vehicle_inventory_city_master">
-			<column name="vehicle_inventory_id" value="abc123" />
+			<column name="vehicle_inventory_id" value="hyu_cre" />
 			<column name="city_master_city_code" value="AGA" />
 		</insert>
 		<insert tableName="vehicle_inventory_city_master">
-			<column name="vehicle_inventory_id" value="abc123" />
+			<column name="vehicle_inventory_id" value="hyu_cre" />
 			<column name="city_master_city_code" value="GGN" />
 		</insert>
 		<insert tableName="vehicle_inventory_city_master">
-			<column name="vehicle_inventory_id" value="abc123" />
+			<column name="vehicle_inventory_id" value="hyu_cre" />
 			<column name="city_master_city_code" value="NDS" />
 		</insert>
 		<insert tableName="vehicle_inventory_city_master">
-			<column name="vehicle_inventory_id" value="def456" />
+			<column name="vehicle_inventory_id" value="xuv_500" />
 			<column name="city_master_city_code" value="AGA" />
 		</insert>
 		<insert tableName="vehicle_inventory_city_master">
-			<column name="vehicle_inventory_id" value="def456" />
+			<column name="vehicle_inventory_id" value="xuv_500" />
+			<column name="city_master_city_code" value="NDS" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="inn_cre" />
+			<column name="city_master_city_code" value="AGA" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="inn_cre" />
+			<column name="city_master_city_code" value="GGN" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="bal" />
+			<column name="city_master_city_code" value="AGA" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="bal" />
+			<column name="city_master_city_code" value="GGN" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="bal" />
+			<column name="city_master_city_code" value="NDS" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="mar" />
+			<column name="city_master_city_code" value="AGA" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="mar" />
+			<column name="city_master_city_code" value="GGN" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="mar" />
+			<column name="city_master_city_code" value="NDS" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="vit_bre" />
+			<column name="city_master_city_code" value="AGA" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="vit_bre" />
+			<column name="city_master_city_code" value="GGN" />
+		</insert>
+		<insert tableName="vehicle_inventory_city_master">
+			<column name="vehicle_inventory_id" value="vit_bre" />
 			<column name="city_master_city_code" value="NDS" />
 		</insert>
 	</changeSet>

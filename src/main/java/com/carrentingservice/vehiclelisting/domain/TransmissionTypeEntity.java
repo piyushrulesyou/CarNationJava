@@ -28,6 +28,9 @@ public class TransmissionTypeEntity implements Serializable {
 	@Column(name = "transmission_type_name")
 	private String transmissionTypeName;
 
+	@Column(name = "transmission_type_image")
+	private String transmissionTypeImage;
+
 	@Column(name = "created_by")
 	private String createdBy;
 

@@ -40,5 +40,21 @@
 			<column name="created_by" value="piyush" />
 			<column name="modified_by" value="piyush" />
 		</insert>
+		<insert tableName="producer_company">
+			<column name="producer_code" value="Mahindra" />
+			<column name="producer_name" value="Mahindra" />
+			<column name="created_date" value="2020-05-23 00:00:00" />
+			<column name="modified_date" value="2020-05-23 00:00:00" />
+			<column name="created_by" value="piyush" />
+			<column name="modified_by" value="piyush" />
+		</insert>
+		<insert tableName="producer_company">
+			<column name="producer_code" value="Toyota" />
+			<column name="producer_name" value="Toyota" />
+			<column name="created_date" value="2020-05-23 00:00:00" />
+			<column name="modified_date" value="2020-05-23 00:00:00" />
+			<column name="created_by" value="piyush" />
+			<column name="modified_by" value="piyush" />
+		</insert>
 	</changeSet>
 </databaseChangeLog>

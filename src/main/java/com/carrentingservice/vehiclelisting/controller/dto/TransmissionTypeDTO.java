@@ -18,6 +18,8 @@ public class TransmissionTypeDTO implements Serializable {
 
 	private String transmissionTypeName;
 
+	private String transmissionTypeImage;
+
 	private String createdBy;
 
 	private Date createdDate;

@@ -29,9 +29,8 @@ public class VehicleInventoryEntity implements Serializable {
 	@JoinColumn(name = "variant_fkid", referencedColumnName = "variant_code")
 	private VariantTypeEntity variant;
 
-	@ManyToOne
-	@JoinColumn(name = "model_fkid", referencedColumnName = "model_code")
-	private ModelTypeEntity model;
+	@Column(name = "model")
+	private String model;
 
 	@ManyToOne
 	@JoinColumn(name = "fuel_type_fkid", referencedColumnName = "fuel_code")

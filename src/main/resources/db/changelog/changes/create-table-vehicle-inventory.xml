@@ -15,7 +15,7 @@
 				<constraints primaryKey="true" />
 			</column>
 			<column name="variant_fkid" type="VARCHAR" />
-			<column name="model_fkid" type="VARCHAR" />
+			<column name="model" type="VARCHAR" />
 			<column name="fuel_type_fkid" type="VARCHAR" />
 			<column name="transmission_type_fkid" type="VARCHAR" />
 			<column name="car_type_fkid" type="VARCHAR" />
@@ -58,11 +58,6 @@
 			baseTableSchemaName="public" constraintName="variant_fkid"
 			referencedColumnNames="variant_code"
 			referencedTableName="variant_type" referencedTableSchemaName="public" />
-		<addForeignKeyConstraint
-			baseColumnNames="model_fkid" baseTableName="vehicle_inventory"
-			baseTableSchemaName="public" constraintName="model_fkid"
-			referencedColumnNames="model_code" referencedTableName="model_type"
-			referencedTableSchemaName="public" />
 		<addForeignKeyConstraint
 			baseColumnNames="fuel_type_fkid" baseTableName="vehicle_inventory"
 			baseTableSchemaName="public" constraintName="fuel_type_fkid"

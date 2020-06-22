@@ -18,6 +18,8 @@ public class FuelTypeDTO implements Serializable {
 
 	private String fuelName;
 
+	private String fuelTypeImage;
+
 	private String createdBy;
 
 	private Date createdDate;

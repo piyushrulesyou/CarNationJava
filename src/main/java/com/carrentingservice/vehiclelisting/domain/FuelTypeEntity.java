@@ -28,6 +28,9 @@ public class FuelTypeEntity implements Serializable {
 	@Column(name = "fuel_name")
 	private String fuelName;
 
+	@Column(name = "fuel_type_image")
+	private String fuelTypeImage;
+
 	@Column(name = "created_by")
 	private String createdBy;
 

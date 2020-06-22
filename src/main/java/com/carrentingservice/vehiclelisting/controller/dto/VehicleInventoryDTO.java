@@ -18,7 +18,7 @@ public class VehicleInventoryDTO implements Serializable {
 
 	private VariantTypeDTO variant;
 
-	private ModelTypeDTO model;
+	private String model;
 
 	private FuelTypeDTO fuelType;
 

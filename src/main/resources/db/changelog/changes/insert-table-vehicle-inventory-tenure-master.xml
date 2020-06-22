@@ -8,46 +8,129 @@
 
 	<changeSet author="piyush"
 		id="insert-table-vehicle-inventory-tenure-master">
-
 		<insert tableName="vehicle_inventory_tenure_master">
-			<column name="vehicle_inventory_id" value="abc123" />
+			<column name="vehicle_inventory_id" value="hyu_cre" />
 			<column name="tenure_master_tenure_duration" value="3" />
 		</insert>
 		<insert tableName="vehicle_inventory_tenure_master">
-			<column name="vehicle_inventory_id" value="abc123" />
+			<column name="vehicle_inventory_id" value="hyu_cre" />
 			<column name="tenure_master_tenure_duration" value="6" />
 		</insert>
 		<insert tableName="vehicle_inventory_tenure_master">
-			<column name="vehicle_inventory_id" value="abc123" />
+			<column name="vehicle_inventory_id" value="hyu_cre" />
 			<column name="tenure_master_tenure_duration" value="12" />
 		</insert>
 		<insert tableName="vehicle_inventory_tenure_master">
-			<column name="vehicle_inventory_id" value="abc123" />
+			<column name="vehicle_inventory_id" value="hyu_cre" />
 			<column name="tenure_master_tenure_duration" value="18" />
 		</insert>
 		<insert tableName="vehicle_inventory_tenure_master">
-			<column name="vehicle_inventory_id" value="abc123" />
+			<column name="vehicle_inventory_id" value="hyu_cre" />
 			<column name="tenure_master_tenure_duration" value="24" />
 		</insert>
 		<insert tableName="vehicle_inventory_tenure_master">
-			<column name="vehicle_inventory_id" value="abc123" />
-			<column name="tenure_master_tenure_duration" value="36" />
+			<column name="vehicle_inventory_id" value="xuv_500" />
+			<column name="tenure_master_tenure_duration" value="3" />
 		</insert>
 		<insert tableName="vehicle_inventory_tenure_master">
-			<column name="vehicle_inventory_id" value="def456" />
+			<column name="vehicle_inventory_id" value="xuv_500" />
+			<column name="tenure_master_tenure_duration" value="6" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="xuv_500" />
 			<column name="tenure_master_tenure_duration" value="12" />
 		</insert>
 		<insert tableName="vehicle_inventory_tenure_master">
-			<column name="vehicle_inventory_id" value="def456" />
+			<column name="vehicle_inventory_id" value="xuv_500" />
 			<column name="tenure_master_tenure_duration" value="18" />
 		</insert>
 		<insert tableName="vehicle_inventory_tenure_master">
-			<column name="vehicle_inventory_id" value="def456" />
+			<column name="vehicle_inventory_id" value="xuv_500" />
 			<column name="tenure_master_tenure_duration" value="24" />
 		</insert>
 		<insert tableName="vehicle_inventory_tenure_master">
-			<column name="vehicle_inventory_id" value="def456" />
+			<column name="vehicle_inventory_id" value="xuv_500" />
 			<column name="tenure_master_tenure_duration" value="36" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="inn_cre" />
+			<column name="tenure_master_tenure_duration" value="3" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="inn_cre" />
+			<column name="tenure_master_tenure_duration" value="6" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="inn_cre" />
+			<column name="tenure_master_tenure_duration" value="12" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="inn_cre" />
+			<column name="tenure_master_tenure_duration" value="18" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="bal" />
+			<column name="tenure_master_tenure_duration" value="3" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="bal" />
+			<column name="tenure_master_tenure_duration" value="6" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="bal" />
+			<column name="tenure_master_tenure_duration" value="12" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="bal" />
+			<column name="tenure_master_tenure_duration" value="18" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="bal" />
+			<column name="tenure_master_tenure_duration" value="24" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="mar" />
+			<column name="tenure_master_tenure_duration" value="3" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="mar" />
+			<column name="tenure_master_tenure_duration" value="6" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="mar" />
+			<column name="tenure_master_tenure_duration" value="12" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="mar" />
+			<column name="tenure_master_tenure_duration" value="18" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="mar" />
+			<column name="tenure_master_tenure_duration" value="24" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="mar" />
+			<column name="tenure_master_tenure_duration" value="36" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="vit_bre" />
+			<column name="tenure_master_tenure_duration" value="3" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="vit_bre" />
+			<column name="tenure_master_tenure_duration" value="6" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="vit_bre" />
+			<column name="tenure_master_tenure_duration" value="12" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="vit_bre" />
+			<column name="tenure_master_tenure_duration" value="18" />
+		</insert>
+		<insert tableName="vehicle_inventory_tenure_master">
+			<column name="vehicle_inventory_id" value="vit_bre" />
+			<column name="tenure_master_tenure_duration" value="24" />
 		</insert>
 	</changeSet>
 </databaseChangeLog>
