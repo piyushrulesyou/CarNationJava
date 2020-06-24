@@ -13,42 +13,32 @@
 	<include file="/db/changelog/changes/create-table-producer.xml" />
 	<include
 		file="/db/changelog/changes/create-table-transmission-type.xml" />
-	<include file="/db/changelog/changes/create-table-variant.xml" />
+	<include file="/db/changelog/changes/insert-table-car-type.xml" />
+	<include
+		file="/db/changelog/changes/create-table-tenure-price-master.xml" />
+	<include
+		file="/db/changelog/changes/insert-table-tenure-price-master.xml" />
 	<include
 		file="/db/changelog/changes/create-table-vehicle-inventory.xml" />
-	<include file="/db/changelog/changes/insert-table-car-type.xml" />
 	<include
 		file="/db/changelog/changes/insert-table-price-master.xml" />
 	<include
 		file="/db/changelog/changes/insert-table-price-master-2.xml" />
 	<include file="/db/changelog/changes/insert-table-producer.xml" />
-	<include file="/db/changelog/changes/insert-table-variant.xml" />
 	<include
 		file="/db/changelog/changes/create-table-city-master.xml" />
 	<include
 		file="/db/changelog/changes/create-table-color-master.xml" />
 	<include
-		file="/db/changelog/changes/create-table-tenure-price-master.xml" />
-	<include
 		file="/db/changelog/changes/insert-table-city-master.xml" />
 	<include
 		file="/db/changelog/changes/insert-table-color-master.xml" />
 	<include
-		file="/db/changelog/changes/insert-table-tenure-price-master.xml" />
-	<include
-		file="/db/changelog/changes/alter-table-vehicle-inventory.xml" />
-	<include
 		file="/db/changelog/changes/create-table-vehicle-inventory-city-master.xml" />
-
 	<include
 		file="/db/changelog/changes/insert-table-city-master-2.xml" />
 	<include
 		file="/db/changelog/changes/create-table-vehicle-inventory-color-master.xml" />
-	<include
-		file="/db/changelog/changes/create-table-vehicle-inventory-tenure-master.xml" />
-
-	<include
-		file="/db/changelog/changes/alter-table-vehicle-inventory-add-column.xml" />
 	<include
 		file="/db/changelog/changes/alter-table-transmission-type-add-column-image.xml" />
 	<include
@@ -63,8 +53,6 @@
 		file="/db/changelog/changes/insert-table-vehicle-inventory.xml" />
 	<include
 		file="/db/changelog/changes/insert-table-vehicle-inventory-color-master.xml" />
-	<include
-		file="/db/changelog/changes/insert-table-vehicle-inventory-tenure-master.xml" />
 	<include
 		file="/db/changelog/changes/insert-table-vehicle-inventory-city-master.xml" />
 </databaseChangeLog>

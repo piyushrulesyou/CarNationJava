@@ -20,7 +20,8 @@
 		</insert>
 		<insert tableName="transmission_type">
 			<column name="transmission_type_code" value="AUTO" />
-			<column name="transmission_type_name"
+			<column name="transmission_type_name" value="Automatic" />
+			<column name="transmission_type_image"
 				value="https://car-renting-service-images.s3.ap-south-1.amazonaws.com/automatic-transmission.png" />
 			<column name="created_date" value="2020-05-23 00:00:00" />
 			<column name="modified_date" value="2020-05-23 00:00:00" />

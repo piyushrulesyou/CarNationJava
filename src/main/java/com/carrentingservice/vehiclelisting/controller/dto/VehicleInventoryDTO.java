@@ -16,7 +16,7 @@ public class VehicleInventoryDTO implements Serializable {
 
 	private String id;
 
-	private VariantTypeDTO variant;
+	private String variant;
 
 	private String model;
 
@@ -52,7 +52,7 @@ public class VehicleInventoryDTO implements Serializable {
 
 	private boolean showVariant;
 
-	private List<TenurePriceMasterDTO> tenureMaster;
+	private TenurePriceMasterDTO tenureMaster;
 
 	private String createdBy;
 

@@ -31,7 +31,7 @@ public class InventoryRequestDTO {
 	private List<String> cityMaster;
 	private long securityDeposit;
 	private boolean showVariant;
-	private List<String> tenureMaster;
+	private List<Long> tenureMaster;
 	private String createdBy;
 	private Date createdDate;
 	private String modifiedBy;

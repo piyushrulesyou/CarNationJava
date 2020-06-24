@@ -2,15 +2,13 @@ package com.carrentingservice.vehiclelisting.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,15 +24,27 @@ public class TenurePriceMasterEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "tenure_duration")
-	private String tenureDuration;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "tenure_id")
+	private Long tenureId;
 
-	@Column(name = "price_multiplier")
-	private double priceMultiplier;
+	@Column(name = "months3")
+	private double months3;
 
-	@ManyToMany(mappedBy = "tenureMaster")
-	@JsonIgnore
-	private List<VehicleInventoryEntity> vehicleInventory;
+	@Column(name = "months6")
+	private double months6;
+
+	@Column(name = "months12")
+	private double months12;
+
+	@Column(name = "months18")
+	private double months18;
+
+	@Column(name = "months24")
+	private double months24;
+
+	@Column(name = "months36")
+	private double months36;
 
 	@Column(name = "created_by")
 	private String createdBy;
@@ -47,8 +57,4 @@ public class TenurePriceMasterEntity implements Serializable {
 
 	@Column(name = "modified_date")
 	private Date modifiedDate;
-
-	public TenurePriceMasterEntity(String tenureDuration) {
-		this.tenureDuration = tenureDuration;
-	}
 }

@@ -3,9 +3,9 @@ package com.carrentingservice.vehiclelisting.repo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.carrentingservice.vehiclelisting.domain.VehicleInventoryEntity;
+import com.carrentingservice.vehiclelisting.domain.TenurePriceMasterEntity;
 
 @Repository
-public interface VehicleInventoryRepo extends JpaRepository<VehicleInventoryEntity, String> {
+public interface TenurePriceMasterRepo extends JpaRepository<TenurePriceMasterEntity, Long> {
 
 }

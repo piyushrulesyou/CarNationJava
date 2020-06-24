@@ -20,15 +20,13 @@ import com.carrentingservice.vehiclelisting.domain.PriceMasterEntity;
 import com.carrentingservice.vehiclelisting.domain.ProducerTypeEntity;
 import com.carrentingservice.vehiclelisting.domain.TenurePriceMasterEntity;
 import com.carrentingservice.vehiclelisting.domain.TransmissionTypeEntity;
-import com.carrentingservice.vehiclelisting.domain.VariantTypeEntity;
 import com.carrentingservice.vehiclelisting.domain.VehicleInventoryEntity;
 import com.carrentingservice.vehiclelisting.domain.relationship.InventoryCityMasterEntity;
 import com.carrentingservice.vehiclelisting.domain.relationship.InventoryColorMasterEntity;
-import com.carrentingservice.vehiclelisting.domain.relationship.InventoryTenureMasterEntity;
 import com.carrentingservice.vehiclelisting.exceptions.RecordNotFoundException;
 import com.carrentingservice.vehiclelisting.repo.InventoryCityMasterRepo;
 import com.carrentingservice.vehiclelisting.repo.InventoryColorMasterRepo;
-import com.carrentingservice.vehiclelisting.repo.InventoryTenureMasterRepo;
+import com.carrentingservice.vehiclelisting.repo.TenurePriceMasterRepo;
 import com.carrentingservice.vehiclelisting.repo.VehicleInventoryRepo;
 import com.carrentingservice.vehiclelisting.service.VehicleInventoryService;
 import com.carrentingservice.vehiclelisting.service.mappers.VehicleInventoryMapper;
@@ -46,10 +44,10 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 	private InventoryColorMasterRepo inventoryColorMasterRepo;
 
 	@Autowired
-	private InventoryTenureMasterRepo inventoryTenureMasterRepo;
+	private VehicleInventoryMapper vehicleInventoryMapper;
 
 	@Autowired
-	private VehicleInventoryMapper vehicleInventoryMapper;
+	private TenurePriceMasterRepo tenurePriceMasterRepo;
 
 	@Override
 	public List<VehicleInventoryDTO> getVehicleInventory() throws Exception {
@@ -78,23 +76,27 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 	@Override
 	@Transactional(rollbackOn = Exception.class)
 	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails) {
-		VehicleInventoryEntity vehicleInventoryEntity = mapVehicleDtoTOEntity(inventoryDetails);
+		VehicleInventoryEntity vehicleInventoryEntity = mapVehicleDtoToEntity(inventoryDetails);
 		vehicleInventoryRepo.save(vehicleInventoryEntity);
 		inventoryCityMasterRepo.saveAll(prepareInventoryCityEntity(inventoryDetails));
 		inventoryColorMasterRepo.saveAll(prepareInventoryColorEntity(inventoryDetails));
-		inventoryTenureMasterRepo.saveAll(prepareInventoryTenureEntity(inventoryDetails));
+		tenurePriceMasterRepo.save(prepareTenurePriceEntity(inventoryDetails));
 		return inventoryDetails;
 	}
 
-	private List<InventoryTenureMasterEntity> prepareInventoryTenureEntity(InventoryRequestDTO inventoryDetails) {
-		List<InventoryTenureMasterEntity> listTenureEntity = new ArrayList<>();
-		for (String eachTenure : inventoryDetails.getTenureMaster()) {
-			InventoryTenureMasterEntity tenureEntity = new InventoryTenureMasterEntity();
-			tenureEntity.setVehicleInventoryId(new VehicleInventoryEntity(inventoryDetails.getId()));
-			tenureEntity.setTenureMasterTenureDuration(new TenurePriceMasterEntity(eachTenure));
-			listTenureEntity.add(tenureEntity);
-		}
-		return listTenureEntity;
+	private TenurePriceMasterEntity prepareTenurePriceEntity(InventoryRequestDTO inventoryDetails) {
+		TenurePriceMasterEntity tenurePriceMasterEntity = new TenurePriceMasterEntity();
+		tenurePriceMasterEntity.setMonths3(inventoryDetails.getTenureMaster().get(0));
+		tenurePriceMasterEntity.setMonths6(inventoryDetails.getTenureMaster().get(1));
+		tenurePriceMasterEntity.setMonths12(inventoryDetails.getTenureMaster().get(2));
+		tenurePriceMasterEntity.setMonths18(inventoryDetails.getTenureMaster().get(3));
+		tenurePriceMasterEntity.setMonths24(inventoryDetails.getTenureMaster().get(4));
+		tenurePriceMasterEntity.setMonths36(inventoryDetails.getTenureMaster().get(5));
+		tenurePriceMasterEntity.setCreatedBy(inventoryDetails.getCreatedBy());
+		tenurePriceMasterEntity.setCreatedDate(inventoryDetails.getCreatedDate());
+		tenurePriceMasterEntity.setModifiedBy(inventoryDetails.getModifiedBy());
+		tenurePriceMasterEntity.setModifiedDate(inventoryDetails.getModifiedDate());
+		return tenurePriceMasterEntity;
 	}
 
 	private List<InventoryColorMasterEntity> prepareInventoryColorEntity(InventoryRequestDTO inventoryDetails) {
@@ -119,11 +121,11 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		return listCityEntity;
 	}
 
-	private VehicleInventoryEntity mapVehicleDtoTOEntity(InventoryRequestDTO inventoryDetails) {
+	private VehicleInventoryEntity mapVehicleDtoToEntity(InventoryRequestDTO inventoryDetails) {
 		VehicleInventoryEntity vehicleInventoryEntity = new VehicleInventoryEntity();
 		vehicleInventoryEntity.setId(inventoryDetails.getId());
 		vehicleInventoryEntity.setModel(inventoryDetails.getModel());
-		vehicleInventoryEntity.setVariant(new VariantTypeEntity(inventoryDetails.getVariant()));
+		vehicleInventoryEntity.setVariant(inventoryDetails.getVariant());
 		vehicleInventoryEntity.setFuelType(new FuelTypeEntity(inventoryDetails.getFuelType()));
 		vehicleInventoryEntity.setTransmissionType(new TransmissionTypeEntity(inventoryDetails.getTransmissionType()));
 		vehicleInventoryEntity.setCarType(new CarTypeEntity(inventoryDetails.getCarType()));

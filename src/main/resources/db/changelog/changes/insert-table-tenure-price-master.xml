@@ -10,48 +10,72 @@
 		id="insert-table-tenure-price-master">
 
 		<insert tableName="tenure_price_master">
-			<column name="tenure_duration" value="3" />
-			<column name="price_multiplier" value="2.0" />
+			<column name="months3" value="2.0" />
+			<column name="months6" value="1.7" />
+			<column name="months12" value="1.4" />
+			<column name="months18" value="1.25" />
+			<column name="months24" value="1.15" />
+			<column name="months36" value="1.0" />
 			<column name="created_date" value="2020-05-23 00:00:00" />
 			<column name="modified_date" value="2020-05-23 00:00:00" />
 			<column name="created_by" value="piyush" />
 			<column name="modified_by" value="piyush" />
 		</insert>
 		<insert tableName="tenure_price_master">
-			<column name="tenure_duration" value="6" />
-			<column name="price_multiplier" value="1.70" />
+			<column name="months3" value="2.0" />
+			<column name="months6" value="1.7" />
+			<column name="months12" value="1.4" />
+			<column name="months18" value="1.25" />
+			<column name="months24" value="0.0" />
+			<column name="months36" value="0.0" />
 			<column name="created_date" value="2020-05-23 00:00:00" />
 			<column name="modified_date" value="2020-05-23 00:00:00" />
 			<column name="created_by" value="piyush" />
 			<column name="modified_by" value="piyush" />
 		</insert>
 		<insert tableName="tenure_price_master">
-			<column name="tenure_duration" value="12" />
-			<column name="price_multiplier" value="1.40" />
+			<column name="months3" value="2.0" />
+			<column name="months6" value="1.7" />
+			<column name="months12" value="1.4" />
+			<column name="months18" value="0.0" />
+			<column name="months24" value="0.0" />
+			<column name="months36" value="0.0" />
 			<column name="created_date" value="2020-05-23 00:00:00" />
 			<column name="modified_date" value="2020-05-23 00:00:00" />
 			<column name="created_by" value="piyush" />
 			<column name="modified_by" value="piyush" />
 		</insert>
 		<insert tableName="tenure_price_master">
-			<column name="tenure_duration" value="18" />
-			<column name="price_multiplier" value="1.25" />
+			<column name="months3" value="2.0" />
+			<column name="months6" value="1.7" />
+			<column name="months12" value="1.4" />
+			<column name="months18" value="1.25" />
+			<column name="months24" value="0.0" />
+			<column name="months36" value="0.0" />
 			<column name="created_date" value="2020-05-23 00:00:00" />
 			<column name="modified_date" value="2020-05-23 00:00:00" />
 			<column name="created_by" value="piyush" />
 			<column name="modified_by" value="piyush" />
 		</insert>
 		<insert tableName="tenure_price_master">
-			<column name="tenure_duration" value="24" />
-			<column name="price_multiplier" value="1.15" />
+			<column name="months3" value="2.0" />
+			<column name="months6" value="1.7" />
+			<column name="months12" value="1.4" />
+			<column name="months18" value="1.25" />
+			<column name="months24" value="1.15" />
+			<column name="months36" value="1.0" />
 			<column name="created_date" value="2020-05-23 00:00:00" />
 			<column name="modified_date" value="2020-05-23 00:00:00" />
 			<column name="created_by" value="piyush" />
 			<column name="modified_by" value="piyush" />
 		</insert>
 		<insert tableName="tenure_price_master">
-			<column name="tenure_duration" value="36" />
-			<column name="price_multiplier" value="1.0" />
+			<column name="months3" value="2.0" />
+			<column name="months6" value="1.7" />
+			<column name="months12" value="1.4" />
+			<column name="months18" value="1.25" />
+			<column name="months24" value="1.15" />
+			<column name="months36" value="0.0" />
 			<column name="created_date" value="2020-05-23 00:00:00" />
 			<column name="modified_date" value="2020-05-23 00:00:00" />
 			<column name="created_by" value="piyush" />

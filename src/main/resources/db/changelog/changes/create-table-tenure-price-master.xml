@@ -11,10 +11,25 @@
 
 		<createTable tableName="tenure_price_master"
 			schemaName="public">
-			<column name="tenure_duration" type="VARCHAR">
+			<column autoIncrement="true" name="tenure_id" type="bigint">
 				<constraints primaryKey="true" />
 			</column>
-			<column name="price_multiplier" type="float">
+			<column name="months3" type="DECIMAL(2,1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="months6" type="DECIMAL(2,1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="months12" type="DECIMAL(2,1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="months18" type="DECIMAL(2,1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="months24" type="DECIMAL(2,1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="months36" type="DECIMAL(2,1)">
 				<constraints nullable="false" />
 			</column>
 			<column name="created_by" type="VARCHAR" />

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -25,9 +26,8 @@ public class VehicleInventoryEntity implements Serializable {
 	@Id
 	private String id;
 
-	@ManyToOne
-	@JoinColumn(name = "variant_fkid", referencedColumnName = "variant_code")
-	private VariantTypeEntity variant;
+	@Column(name = "variant")
+	private String variant;
 
 	@Column(name = "model")
 	private String model;
@@ -86,8 +86,9 @@ public class VehicleInventoryEntity implements Serializable {
 	@Column(name = "show_variant")
 	private boolean showVariant;
 
-	@ManyToMany
-	private List<TenurePriceMasterEntity> tenureMaster;
+	@OneToOne
+	@JoinColumn(name = "tenure_fkid", referencedColumnName = "tenure_id")
+	private TenurePriceMasterEntity tenureMaster;
 
 	@Column(name = "created_by")
 	private String createdBy;

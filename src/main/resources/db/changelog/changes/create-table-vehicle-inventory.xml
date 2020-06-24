@@ -14,7 +14,7 @@
 			<column name="id" type="VARCHAR">
 				<constraints primaryKey="true" />
 			</column>
-			<column name="variant_fkid" type="VARCHAR" />
+			<column name="variant" type="VARCHAR" />
 			<column name="model" type="VARCHAR" />
 			<column name="fuel_type_fkid" type="VARCHAR" />
 			<column name="transmission_type_fkid" type="VARCHAR" />
@@ -48,16 +48,14 @@
 			<column name="show_variant" type="BOOLEAN">
 				<constraints nullable="false" />
 			</column>
+			<column name="tenure_fkid" type="bigint">
+				<constraints nullable="false" />
+			</column>
 			<column name="created_by" type="VARCHAR" />
 			<column name="created_date" type="TIMESTAMP" />
 			<column name="modified_by" type="VARCHAR" />
 			<column name="modified_date" type="TIMESTAMP" />
 		</createTable>
-		<addForeignKeyConstraint
-			baseColumnNames="variant_fkid" baseTableName="vehicle_inventory"
-			baseTableSchemaName="public" constraintName="variant_fkid"
-			referencedColumnNames="variant_code"
-			referencedTableName="variant_type" referencedTableSchemaName="public" />
 		<addForeignKeyConstraint
 			baseColumnNames="fuel_type_fkid" baseTableName="vehicle_inventory"
 			baseTableSchemaName="public" constraintName="fuel_type_fkid"
@@ -85,6 +83,12 @@
 			baseColumnNames="price_fkid" baseTableName="vehicle_inventory"
 			baseTableSchemaName="public" constraintName="price_fkid"
 			referencedColumnNames="base_price" referencedTableName="price_master"
+			referencedTableSchemaName="public" />
+		<addForeignKeyConstraint
+			baseColumnNames="tenure_fkid" baseTableName="vehicle_inventory"
+			baseTableSchemaName="public" constraintName="tenure_fkid"
+			referencedColumnNames="tenure_id"
+			referencedTableName="tenure_price_master"
 			referencedTableSchemaName="public" />
 	</changeSet>
 </databaseChangeLog>
