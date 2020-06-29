@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.carrentingservice.vehiclelisting.controller.dto.VehicleInventoryDTO;
+import com.carrentingservice.vehiclelisting.controller.dto.InventoryResponseTO;
 import com.carrentingservice.vehiclelisting.exceptions.RecordNotFoundException;
 import com.carrentingservice.vehiclelisting.service.VehicleCategoryFiltersService;
 
@@ -15,29 +15,33 @@ public class VehicleCategoryFiltersDelegate {
 	@Autowired
 	private VehicleCategoryFiltersService vehicleCategoryFiltersService;
 
-	public List<VehicleInventoryDTO> filterByTransmissionType(boolean manualTransmission, boolean autoTransmission)
+	public InventoryResponseTO filterByTransmissionType(boolean manualTransmission, boolean autoTransmission,
+			Long startPage, Long size) throws RecordNotFoundException {
+		return vehicleCategoryFiltersService.filterByTransmissionType(manualTransmission, autoTransmission, startPage,
+				size);
+	}
+
+	public InventoryResponseTO filterByFuelType(boolean petrol, boolean diesel, Long startPage, Long size)
 			throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByTransmissionType(manualTransmission, autoTransmission);
+		return vehicleCategoryFiltersService.filterByFuelType(petrol, diesel, startPage, size);
 	}
 
-	public List<VehicleInventoryDTO> filterByFuelType(boolean petrol, boolean diesel) throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByFuelType(petrol, diesel);
+	public InventoryResponseTO filterBySegmentType(boolean suv, boolean sedan, boolean hatchback, Long startPage,
+			Long size) throws RecordNotFoundException {
+		return vehicleCategoryFiltersService.filterBySegmentType(suv, sedan, hatchback, startPage, size);
 	}
 
-	public List<VehicleInventoryDTO> filterBySegmentType(boolean suv, boolean sedan, boolean hatchback)
+	public InventoryResponseTO filterByBrandName(List<String> brands, Long startPage, Long size)
 			throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterBySegmentType(suv, sedan, hatchback);
+		return vehicleCategoryFiltersService.filterByBrandName(brands, startPage, size);
 	}
 
-	public List<VehicleInventoryDTO> filterByBrandName(List<String> brands) throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByBrandName(brands);
+	public InventoryResponseTO filterByCityName(String city, Long startPage, Long size) throws RecordNotFoundException {
+		return vehicleCategoryFiltersService.filterByCityName(city, startPage, size);
 	}
 
-	public List<VehicleInventoryDTO> filterByCityName(String city) throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByCityName(city);
-	}
-
-	public List<VehicleInventoryDTO> filterByPriceRange(Long minPrice, Long maxPrice) throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByPriceRange(minPrice, maxPrice);
+	public InventoryResponseTO filterByPriceRange(Long minPrice, Long maxPrice, Long startPage, Long size)
+			throws RecordNotFoundException {
+		return vehicleCategoryFiltersService.filterByPriceRange(minPrice, maxPrice, startPage, size);
 	}
 }

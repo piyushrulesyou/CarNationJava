@@ -2,6 +2,8 @@ package com.carrentingservice.vehiclelisting.repo;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,20 +19,23 @@ import com.carrentingservice.vehiclelisting.domain.VehicleInventoryEntity;
 @Repository
 public interface VehicleInventoryRepo extends JpaRepository<VehicleInventoryEntity, String> {
 
-	public List<VehicleInventoryEntity> findByTransmissionType(TransmissionTypeEntity transmissionType);
+	public Page<VehicleInventoryEntity> findById(String id, Pageable page);
 
-	public List<VehicleInventoryEntity> findByFuelType(FuelTypeEntity fuelTypeEntity);
+	public Page<VehicleInventoryEntity> findByTransmissionType(TransmissionTypeEntity transmissionType,
+			Pageable pageData);
 
-	public List<VehicleInventoryEntity> findByCarType(CarTypeEntity carTypeEntity);
+	public Page<VehicleInventoryEntity> findByFuelType(FuelTypeEntity fuelTypeEntity, Pageable pageData);
+
+	public Page<VehicleInventoryEntity> findByCarType(CarTypeEntity carTypeEntity, Pageable pageData);
 
 	@Query("select veh from VehicleInventoryEntity veh where veh.producer in (:producersList)")
-	public List<VehicleInventoryEntity> findByProducer(@Param("producersList") List<ProducerTypeEntity> producersList);
+	public Page<VehicleInventoryEntity> findByProducer(@Param("producersList") List<ProducerTypeEntity> producersList,
+			Pageable pageData);
 
 	@Query("select veh from VehicleInventoryEntity veh where veh.id in (:vehicleIdList)")
-	public List<VehicleInventoryEntity> findByIdList(List<String> vehicleIdList);
+	public Page<VehicleInventoryEntity> findByIdList(List<String> vehicleIdList, Pageable pageData);
 
 	@Query("select veh from VehicleInventoryEntity veh where veh.priceMaster BETWEEN :minPrice AND :maxPrice")
-	public List<VehicleInventoryEntity> findByPriceRange(@Param("minPrice") PriceMasterEntity minPrice,
-			@Param("maxPrice") PriceMasterEntity maxPrice);
-
+	public Page<VehicleInventoryEntity> findByPriceRange(@Param("minPrice") PriceMasterEntity minPrice,
+			@Param("maxPrice") PriceMasterEntity maxPrice, Pageable pageData);
 }

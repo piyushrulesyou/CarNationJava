@@ -7,10 +7,14 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.carrentingservice.vehiclelisting.constants.ErrorConstants;
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryRequestDTO;
+import com.carrentingservice.vehiclelisting.controller.dto.InventoryResponseTO;
 import com.carrentingservice.vehiclelisting.controller.dto.VehicleInventoryDTO;
 import com.carrentingservice.vehiclelisting.domain.CarTypeEntity;
 import com.carrentingservice.vehiclelisting.domain.CityMasterEntity;
@@ -50,32 +54,42 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 	private TenurePriceMasterRepo tenurePriceMasterRepo;
 
 	@Override
-	public List<VehicleInventoryDTO> getVehicleInventory() throws RecordNotFoundException {
-		List<VehicleInventoryEntity> vehicleInventoryEntity = vehicleInventoryRepo.findAll();
+	public InventoryResponseTO getVehicleInventory(Long startPage, Long size) throws RecordNotFoundException {
 
-		if (vehicleInventoryEntity.isEmpty()) {
+		Pageable pageData = PageRequest.of(startPage.intValue(), size.intValue());
+		Page<VehicleInventoryEntity> vehicleEntityList = vehicleInventoryRepo.findAll(pageData);
+		if (vehicleEntityList.isEmpty()) {
 			throw new RecordNotFoundException("Error occured in method " + " getVehicleInventory() " + " of class "
 					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.NOT_FOUND_ERROR_CODE
 					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND + ".");
 		}
-		return vehicleInventoryMapper.toVehicleInventoryDTO(vehicleInventoryEntity);
+		InventoryResponseTO inventoryTO = new InventoryResponseTO();
+		inventoryTO.setListVehicleDTO(vehicleInventoryMapper.toVehicleInventoryDTO(vehicleEntityList.getContent()));
+		inventoryTO.setTotalPages(vehicleEntityList.getTotalPages());
+		inventoryTO.setTotalEnteries(vehicleEntityList.getTotalElements());
+		return inventoryTO;
 	}
 
 	@Override
-	public VehicleInventoryDTO getVehicleInventoryById(String vehicleId) throws RecordNotFoundException {
-		Optional<VehicleInventoryEntity> vehicleInventoryEntity = vehicleInventoryRepo.findById(vehicleId);
+	public InventoryResponseTO getVehicleInventoryById(String vehicleId) throws RecordNotFoundException {
 
+		Optional<VehicleInventoryEntity> vehicleInventoryEntity = vehicleInventoryRepo.findById(vehicleId);
 		if (!vehicleInventoryEntity.isPresent()) {
 			throw new RecordNotFoundException("Error occured in method " + " getVehicleInventory() " + " of class "
 					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.NOT_FOUND_ERROR_CODE
 					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND + ".");
 		}
-		return vehicleInventoryMapper.toVehicleInventoryDTO(vehicleInventoryEntity.get());
+		InventoryResponseTO inventoryTO = new InventoryResponseTO();
+		List<VehicleInventoryDTO> listVehicle = new ArrayList<>();
+		listVehicle.add(vehicleInventoryMapper.toVehicleInventoryDTO(vehicleInventoryEntity.get()));
+		inventoryTO.setListVehicleDTO(listVehicle);
+		return inventoryTO;
 	}
 
 	@Override
 	@Transactional(rollbackOn = Exception.class)
 	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails) {
+
 		VehicleInventoryEntity vehicleInventoryEntity = mapVehicleDtoToEntity(inventoryDetails);
 		vehicleInventoryRepo.save(vehicleInventoryEntity);
 		inventoryCityMasterRepo.saveAll(prepareInventoryCityEntity(inventoryDetails));
