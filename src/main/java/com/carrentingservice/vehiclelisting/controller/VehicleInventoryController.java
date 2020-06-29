@@ -16,6 +16,7 @@ import com.carrentingservice.vehiclelisting.controller.dto.InventoryRequestDTO;
 import com.carrentingservice.vehiclelisting.controller.dto.ResponseTO;
 import com.carrentingservice.vehiclelisting.controller.dto.VehicleInventoryDTO;
 import com.carrentingservice.vehiclelisting.delegate.VehicleInventoryDelegate;
+import com.carrentingservice.vehiclelisting.exceptions.RecordNotFoundException;
 
 @RestController
 @RequestMapping("/vehicle-inventory")
@@ -25,7 +26,7 @@ public class VehicleInventoryController {
 	private VehicleInventoryDelegate vehicleInventoryDelegate;
 
 	@GetMapping(value = "/get-vehicle")
-	public ResponseEntity<ResponseTO<List<VehicleInventoryDTO>>> getVehicleInventory() throws Exception {
+	public ResponseEntity<ResponseTO<List<VehicleInventoryDTO>>> getVehicleInventory() throws RecordNotFoundException {
 		ResponseTO<List<VehicleInventoryDTO>> responseTO = new ResponseTO<>();
 		List<VehicleInventoryDTO> vehicleInventory = vehicleInventoryDelegate.getVehicleInventory();
 		responseTO.setData(vehicleInventory);
@@ -34,7 +35,7 @@ public class VehicleInventoryController {
 
 	@GetMapping(value = "/get-vehicle/{vehicleId}")
 	public ResponseEntity<ResponseTO<VehicleInventoryDTO>> getVehicleInventoryById(
-			@PathVariable("vehicleId") String vehicleId) throws Exception {
+			@PathVariable("vehicleId") String vehicleId) throws RecordNotFoundException {
 		ResponseTO<VehicleInventoryDTO> responseTO = new ResponseTO<>();
 		VehicleInventoryDTO vehicleInventory = vehicleInventoryDelegate.getVehicleInventoryById(vehicleId);
 		responseTO.setData(vehicleInventory);

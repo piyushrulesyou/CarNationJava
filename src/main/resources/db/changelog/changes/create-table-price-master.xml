@@ -9,7 +9,7 @@
 	<changeSet author="piyush" id="create-table-price-master">
 
 		<createTable tableName="price_master" schemaName="public">
-			<column name="base_price" type="VARCHAR">
+			<column name="base_price" type="bigint">
 				<constraints primaryKey="true" />
 			</column>
 			<column name="discount_absolute" type="BIGINT">

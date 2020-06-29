@@ -23,13 +23,13 @@ public class PriceMasterEntity implements Serializable {
 
 	@Id
 	@Column(name = "base_price")
-	private String basePrice;
+	private long basePrice;
 
 	@Column(name = "discount_absolute")
 	private long discountAbsolute;
 
 	@Column(name = "discount_percentage")
-	private long discountPercentage;
+	private double discountPercentage;
 
 	@Column(name = "created_by")
 	private String createdBy;
@@ -43,7 +43,7 @@ public class PriceMasterEntity implements Serializable {
 	@Column(name = "modified_date")
 	private Date modifiedDate;
 
-	public PriceMasterEntity(String basePrice) {
+	public PriceMasterEntity(long basePrice) {
 		this.basePrice = basePrice;
 	}
 }

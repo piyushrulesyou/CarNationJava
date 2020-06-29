@@ -26,7 +26,7 @@ public class InventoryRequestDTO {
 	private String smallSizeImage;
 	private boolean isPopular;
 	private long extraKmCharge;
-	private String priceMaster;
+	private long priceMaster;
 	private long insuranceCost;
 	private List<String> cityMaster;
 	private long securityDeposit;

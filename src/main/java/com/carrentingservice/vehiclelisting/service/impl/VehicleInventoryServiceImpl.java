@@ -50,7 +50,7 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 	private TenurePriceMasterRepo tenurePriceMasterRepo;
 
 	@Override
-	public List<VehicleInventoryDTO> getVehicleInventory() throws Exception {
+	public List<VehicleInventoryDTO> getVehicleInventory() throws RecordNotFoundException {
 		List<VehicleInventoryEntity> vehicleInventoryEntity = vehicleInventoryRepo.findAll();
 
 		if (vehicleInventoryEntity.isEmpty()) {
@@ -62,7 +62,7 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 	}
 
 	@Override
-	public VehicleInventoryDTO getVehicleInventoryById(String vehicleId) throws Exception {
+	public VehicleInventoryDTO getVehicleInventoryById(String vehicleId) throws RecordNotFoundException {
 		Optional<VehicleInventoryEntity> vehicleInventoryEntity = vehicleInventoryRepo.findById(vehicleId);
 
 		if (!vehicleInventoryEntity.isPresent()) {

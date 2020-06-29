@@ -14,11 +14,11 @@ public class PriceMasterDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String basePrice;
+	private long basePrice;
 
 	private long discountAbsolute;
 
-	private long discountPercentage;
+	private double discountPercentage;
 
 	private String createdBy;
 

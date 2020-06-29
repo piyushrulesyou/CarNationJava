@@ -38,7 +38,7 @@
 			<column name="extra_km_charge" type="BIGINT">
 				<constraints nullable="false" />
 			</column>
-			<column name="price_fkid" type="VARCHAR" />
+			<column name="price_fkid" type="bigint" />
 			<column name="insurance_cost" type="BIGINT">
 				<constraints nullable="false" />
 			</column>

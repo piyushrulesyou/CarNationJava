@@ -55,4 +55,6 @@
 		file="/db/changelog/changes/insert-table-vehicle-inventory-color-master.xml" />
 	<include
 		file="/db/changelog/changes/insert-table-vehicle-inventory-city-master.xml" />
+	<include
+		file="/db/changelog/changes/alter-table-price-master-change-data-type.xml" />
 </databaseChangeLog>
