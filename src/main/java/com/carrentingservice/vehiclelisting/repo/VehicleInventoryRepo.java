@@ -28,6 +28,10 @@ public interface VehicleInventoryRepo extends JpaRepository<VehicleInventoryEnti
 
 	public Page<VehicleInventoryEntity> findByCarType(CarTypeEntity carTypeEntity, Pageable pageData);
 
+	@Query("select veh from VehicleInventoryEntity veh where veh.carType in (:carTypeEntity1, :carTypeEntity2)")
+	public Page<VehicleInventoryEntity> findByMultipleCarTypes(CarTypeEntity carTypeEntity1,
+			CarTypeEntity carTypeEntity2, Pageable pageData);
+
 	@Query("select veh from VehicleInventoryEntity veh where veh.producer in (:producersList)")
 	public Page<VehicleInventoryEntity> findByProducer(@Param("producersList") List<ProducerTypeEntity> producersList,
 			Pageable pageData);

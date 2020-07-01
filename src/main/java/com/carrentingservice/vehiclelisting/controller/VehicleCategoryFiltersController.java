@@ -48,7 +48,7 @@ public class VehicleCategoryFiltersController {
 
 	@GetMapping("/segment")
 	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterBySegmentType(@RequestParam("suv") boolean suv,
-			@RequestParam("hatchback") boolean hatchback, @RequestParam("sedan") boolean sedan,
+			@RequestParam("sedan") boolean sedan, @RequestParam("hatchback") boolean hatchback,
 			@RequestParam("startPage") Long startPage, @RequestParam("size") Long size) throws RecordNotFoundException {
 
 		ResponseTO<InventoryResponseTO> responseTO = new ResponseTO<>();

@@ -60,8 +60,8 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		Page<VehicleInventoryEntity> vehicleEntityList = vehicleInventoryRepo.findAll(pageData);
 		if (vehicleEntityList.isEmpty()) {
 			throw new RecordNotFoundException("Error occured in method " + " getVehicleInventory() " + " of class "
-					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.NOT_FOUND_ERROR_CODE
-					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND + ".");
+					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
+					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
 		}
 		InventoryResponseTO inventoryTO = new InventoryResponseTO();
 		inventoryTO.setListVehicleDTO(vehicleInventoryMapper.toVehicleInventoryDTO(vehicleEntityList.getContent()));
@@ -76,8 +76,8 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		Optional<VehicleInventoryEntity> vehicleInventoryEntity = vehicleInventoryRepo.findById(vehicleId);
 		if (!vehicleInventoryEntity.isPresent()) {
 			throw new RecordNotFoundException("Error occured in method " + " getVehicleInventory() " + " of class "
-					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.NOT_FOUND_ERROR_CODE
-					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND + ".");
+					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
+					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
 		}
 		InventoryResponseTO inventoryTO = new InventoryResponseTO();
 		List<VehicleInventoryDTO> listVehicle = new ArrayList<>();
