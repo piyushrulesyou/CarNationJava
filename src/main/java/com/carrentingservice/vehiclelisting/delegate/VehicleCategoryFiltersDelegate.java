@@ -1,11 +1,10 @@
 package com.carrentingservice.vehiclelisting.delegate;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryResponseTO;
+import com.carrentingservice.vehiclelisting.controller.dto.request.BrandFilterRequestDTO;
 import com.carrentingservice.vehiclelisting.exceptions.RecordNotFoundException;
 import com.carrentingservice.vehiclelisting.service.VehicleCategoryFiltersService;
 
@@ -31,7 +30,7 @@ public class VehicleCategoryFiltersDelegate {
 		return vehicleCategoryFiltersService.filterBySegmentType(suv, sedan, hatchback, startPage, size);
 	}
 
-	public InventoryResponseTO filterByBrandName(List<String> brands, Long startPage, Long size)
+	public InventoryResponseTO filterByBrandName(BrandFilterRequestDTO brands, Long startPage, Long size)
 			throws RecordNotFoundException {
 		return vehicleCategoryFiltersService.filterByBrandName(brands, startPage, size);
 	}

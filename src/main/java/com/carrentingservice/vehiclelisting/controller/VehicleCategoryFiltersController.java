@@ -1,17 +1,18 @@
 package com.carrentingservice.vehiclelisting.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryResponseTO;
 import com.carrentingservice.vehiclelisting.controller.dto.ResponseTO;
+import com.carrentingservice.vehiclelisting.controller.dto.request.BrandFilterRequestDTO;
 import com.carrentingservice.vehiclelisting.delegate.VehicleCategoryFiltersDelegate;
 import com.carrentingservice.vehiclelisting.exceptions.RecordNotFoundException;
 
@@ -58,10 +59,9 @@ public class VehicleCategoryFiltersController {
 		return new ResponseEntity<>(responseTO, HttpStatus.OK);
 	}
 
-	@GetMapping("/brand")
-	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterByBrandName(
-			@RequestParam("brands") List<String> brands, @RequestParam("startPage") Long startPage,
-			@RequestParam("size") Long size) throws RecordNotFoundException {
+	@PostMapping("/brand")
+	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterByBrandName(@RequestBody BrandFilterRequestDTO brands,
+			@RequestParam("startPage") Long startPage, @RequestParam("size") Long size) throws RecordNotFoundException {
 
 		ResponseTO<InventoryResponseTO> responseTO = new ResponseTO<>();
 		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByBrandName(brands, startPage, size);

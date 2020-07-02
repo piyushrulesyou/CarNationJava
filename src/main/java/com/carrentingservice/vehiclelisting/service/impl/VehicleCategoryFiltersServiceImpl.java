@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.carrentingservice.vehiclelisting.constants.CommonConstants;
 import com.carrentingservice.vehiclelisting.constants.ErrorConstants;
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryResponseTO;
+import com.carrentingservice.vehiclelisting.controller.dto.request.BrandFilterRequestDTO;
 import com.carrentingservice.vehiclelisting.domain.CarTypeEntity;
 import com.carrentingservice.vehiclelisting.domain.CityMasterEntity;
 import com.carrentingservice.vehiclelisting.domain.FuelTypeEntity;
@@ -58,8 +59,9 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 		}
 		if (vehicleEntityList == null || vehicleEntityList.isEmpty()) {
 			throw new RecordNotFoundException("Error occured in method " + " filterByTransmissionType() " + " of class "
-					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
-					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
+					+ this.getClass().getName() + ". Exception code is "
+					+ ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE + " and exception message is "
+					+ ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
 		}
 		InventoryResponseTO inventoryTO = new InventoryResponseTO();
 		inventoryTO.setListVehicleDTO(vehicleInventoryMapper.toVehicleInventoryDTO(vehicleEntityList.getContent()));
@@ -84,9 +86,10 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 					.findByFuelType(new FuelTypeEntity(CommonConstants.DIESEL_FUEL_TYPE), pageData);
 		}
 		if (vehicleEntityList == null || vehicleEntityList.isEmpty()) {
-			throw new RecordNotFoundException("Error occured in method " + " filterByFuelType() " + " of class "
-					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
-					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
+			throw new RecordNotFoundException(
+					"Error occured in method " + " filterByFuelType() " + " of class " + this.getClass().getName()
+							+ ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
+							+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
 		}
 		InventoryResponseTO inventoryTO = new InventoryResponseTO();
 		inventoryTO.setListVehicleDTO(vehicleInventoryMapper.toVehicleInventoryDTO(vehicleEntityList.getContent()));
@@ -126,9 +129,10 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 					new CarTypeEntity(CommonConstants.HATCHBACK_CAR_TYPE), pageData);
 		}
 		if (vehicleEntityList == null || vehicleEntityList.isEmpty()) {
-			throw new RecordNotFoundException("Error occured in method " + " filterBySegmentType() " + " of class "
-					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
-					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
+			throw new RecordNotFoundException(
+					"Error occured in method " + " filterBySegmentType() " + " of class " + this.getClass().getName()
+							+ ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
+							+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
 		}
 		InventoryResponseTO inventoryTO = new InventoryResponseTO();
 		inventoryTO.setListVehicleDTO(vehicleInventoryMapper.toVehicleInventoryDTO(vehicleEntityList.getContent()));
@@ -138,16 +142,17 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 	}
 
 	@Override
-	public InventoryResponseTO filterByBrandName(List<String> brands, Long startPage, Long size)
+	public InventoryResponseTO filterByBrandName(BrandFilterRequestDTO brands, Long startPage, Long size)
 			throws RecordNotFoundException {
 
 		Pageable pageData = PageRequest.of(startPage.intValue(), size.intValue());
 		Page<VehicleInventoryEntity> vehicleEntityList = vehicleInventoryRepo
-				.findByProducer(prepareProducerTypeEntityList(brands), pageData);
+				.findByProducer(prepareProducerTypeEntityList(brands.getBrands()), pageData);
 		if (vehicleEntityList == null || vehicleEntityList.isEmpty()) {
-			throw new RecordNotFoundException("Error occured in method " + " filterByBrandName() " + " of class "
-					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
-					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
+			throw new RecordNotFoundException(
+					"Error occured in method " + " filterByBrandName() " + " of class " + this.getClass().getName()
+							+ ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
+							+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
 		}
 		InventoryResponseTO inventoryTO = new InventoryResponseTO();
 		inventoryTO.setListVehicleDTO(vehicleInventoryMapper.toVehicleInventoryDTO(vehicleEntityList.getContent()));
@@ -163,9 +168,10 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 		Page<InventoryCityMasterEntity> inventoryCityList = inventoryCityMasterRepo
 				.findByCityMasterCityCode(new CityMasterEntity(city), pageData);
 		if (inventoryCityList == null || inventoryCityList.isEmpty())
-			throw new RecordNotFoundException("Error occured in method " + " filterByCityName() " + " of class "
-					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
-					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
+			throw new RecordNotFoundException(
+					"Error occured in method " + " filterByCityName() " + " of class " + this.getClass().getName()
+							+ ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
+							+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
 		List<VehicleInventoryEntity> vehicleEntityList = new ArrayList<>();
 		for (InventoryCityMasterEntity inventoryCityMaster : inventoryCityList.getContent()) {
 			vehicleEntityList.add(inventoryCityMaster.getVehicleInventoryId());
@@ -185,9 +191,10 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 		Page<VehicleInventoryEntity> vehicleEntityList = vehicleInventoryRepo
 				.findByPriceRange(new PriceMasterEntity(minPrice), new PriceMasterEntity(maxPrice), pageData);
 		if (vehicleEntityList == null || vehicleEntityList.isEmpty())
-			throw new RecordNotFoundException("Error occured in method " + " filterByPriceRange() " + " of class "
-					+ this.getClass().getName() + ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
-					+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
+			throw new RecordNotFoundException(
+					"Error occured in method " + " filterByPriceRange() " + " of class " + this.getClass().getName()
+							+ ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
+							+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
 		InventoryResponseTO inventoryTO = new InventoryResponseTO();
 		inventoryTO.setListVehicleDTO(vehicleInventoryMapper.toVehicleInventoryDTO(vehicleEntityList.getContent()));
 		inventoryTO.setTotalPages(vehicleEntityList.getTotalPages());
