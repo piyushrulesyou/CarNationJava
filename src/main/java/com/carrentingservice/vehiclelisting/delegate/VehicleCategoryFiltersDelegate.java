@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryResponseTO;
 import com.carrentingservice.vehiclelisting.controller.dto.request.BrandFilterRequestDTO;
+import com.carrentingservice.vehiclelisting.controller.dto.request.VehicleListingFiltersRequestDTO;
 import com.carrentingservice.vehiclelisting.exceptions.RecordNotFoundException;
 import com.carrentingservice.vehiclelisting.service.VehicleCategoryFiltersService;
 
@@ -42,5 +43,10 @@ public class VehicleCategoryFiltersDelegate {
 	public InventoryResponseTO filterByPriceRange(Long minPrice, Long maxPrice, Long startPage, Long size)
 			throws RecordNotFoundException {
 		return vehicleCategoryFiltersService.filterByPriceRange(minPrice, maxPrice, startPage, size);
+	}
+
+	public InventoryResponseTO vehicleListingFilters(VehicleListingFiltersRequestDTO vehicleFilters, Long startPage,
+			Long size) throws RecordNotFoundException {
+		return vehicleCategoryFiltersService.filterByPriceRange(vehicleFilters, startPage, size);
 	}
 }

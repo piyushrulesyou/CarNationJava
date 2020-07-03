@@ -43,4 +43,7 @@ public interface VehicleInventoryRepo extends JpaRepository<VehicleInventoryEnti
 	@Query("select veh from VehicleInventoryEntity veh where veh.priceMaster BETWEEN :minPrice AND :maxPrice")
 	public Page<VehicleInventoryEntity> findByPriceRange(@Param("minPrice") PriceMasterEntity minPrice,
 			@Param("maxPrice") PriceMasterEntity maxPrice, Pageable pageData);
+
+	@Query("select veh from VehicleInventoryEntity veh where veh.id in (:vehicleIds)")
+	public Page<VehicleInventoryEntity> findAllById(@Param("vehicleIds") List<String> vehicleIds, Pageable pageData);
 }

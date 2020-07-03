@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryResponseTO;
 import com.carrentingservice.vehiclelisting.controller.dto.ResponseTO;
 import com.carrentingservice.vehiclelisting.controller.dto.request.BrandFilterRequestDTO;
+import com.carrentingservice.vehiclelisting.controller.dto.request.VehicleListingFiltersRequestDTO;
 import com.carrentingservice.vehiclelisting.delegate.VehicleCategoryFiltersDelegate;
 import com.carrentingservice.vehiclelisting.exceptions.RecordNotFoundException;
 
@@ -86,6 +87,17 @@ public class VehicleCategoryFiltersController {
 
 		ResponseTO<InventoryResponseTO> responseTO = new ResponseTO<>();
 		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByPriceRange(minPrice, maxPrice,
+				startPage, size);
+		responseTO.setData(vehicleList);
+		return new ResponseEntity<>(responseTO, HttpStatus.OK);
+	}
+
+	@PostMapping("/all-filters")
+	public ResponseEntity<ResponseTO<InventoryResponseTO>> vehicleListingFilters(
+			@RequestBody VehicleListingFiltersRequestDTO vehicleFilters, @RequestParam("startPage") Long startPage,
+			@RequestParam("size") Long size) throws RecordNotFoundException {
+		ResponseTO<InventoryResponseTO> responseTO = new ResponseTO<>();
+		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.vehicleListingFilters(vehicleFilters,
 				startPage, size);
 		responseTO.setData(vehicleList);
 		return new ResponseEntity<>(responseTO, HttpStatus.OK);
