@@ -26,68 +26,63 @@ public class VehicleCategoryFiltersController {
 
 	@GetMapping("/transmission")
 	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterByTransmissionType(
-			@RequestParam("manual") boolean manualTransmission, @RequestParam("auto") boolean autoTransmission,
-			@RequestParam("startPage") Long startPage, @RequestParam("size") Long size) throws RecordNotFoundException {
+			@RequestParam("manual") boolean manualTransmission, @RequestParam("auto") boolean autoTransmission)
+			throws RecordNotFoundException {
 
 		ResponseTO<InventoryResponseTO> responseTO = new ResponseTO<>();
 		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByTransmissionType(manualTransmission,
-				autoTransmission, startPage, size);
+				autoTransmission);
 		responseTO.setData(vehicleList);
 		return new ResponseEntity<>(responseTO, HttpStatus.OK);
 	}
 
 	@GetMapping("/fuel")
 	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterByFuelType(@RequestParam("petrol") boolean petrol,
-			@RequestParam("diesel") boolean diesel, @RequestParam("startPage") Long startPage,
-			@RequestParam("size") Long size) throws RecordNotFoundException {
+			@RequestParam("diesel") boolean diesel) throws RecordNotFoundException {
 
 		ResponseTO<InventoryResponseTO> responseTO = new ResponseTO<>();
-		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByFuelType(petrol, diesel, startPage,
-				size);
+		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByFuelType(petrol, diesel);
 		responseTO.setData(vehicleList);
 		return new ResponseEntity<>(responseTO, HttpStatus.OK);
 	}
 
 	@GetMapping("/segment")
 	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterBySegmentType(@RequestParam("suv") boolean suv,
-			@RequestParam("sedan") boolean sedan, @RequestParam("hatchback") boolean hatchback,
-			@RequestParam("startPage") Long startPage, @RequestParam("size") Long size) throws RecordNotFoundException {
+			@RequestParam("sedan") boolean sedan, @RequestParam("hatchback") boolean hatchback)
+			throws RecordNotFoundException {
 
 		ResponseTO<InventoryResponseTO> responseTO = new ResponseTO<>();
-		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterBySegmentType(suv, sedan, hatchback,
-				startPage, size);
+		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterBySegmentType(suv, sedan, hatchback);
 		responseTO.setData(vehicleList);
 		return new ResponseEntity<>(responseTO, HttpStatus.OK);
 	}
 
 	@PostMapping("/brand")
-	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterByBrandName(@RequestBody BrandFilterRequestDTO brands,
-			@RequestParam("startPage") Long startPage, @RequestParam("size") Long size) throws RecordNotFoundException {
+	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterByBrandName(@RequestBody BrandFilterRequestDTO brands)
+			throws RecordNotFoundException {
 
 		ResponseTO<InventoryResponseTO> responseTO = new ResponseTO<>();
-		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByBrandName(brands, startPage, size);
+		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByBrandName(brands);
 		responseTO.setData(vehicleList);
 		return new ResponseEntity<>(responseTO, HttpStatus.OK);
 	}
 
 	@GetMapping("/city")
-	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterByCityName(@RequestParam("city") String city,
-			@RequestParam("startPage") Long startPage, @RequestParam("size") Long size) throws RecordNotFoundException {
+	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterByCityName(@RequestParam("city") String city)
+			throws RecordNotFoundException {
 
 		ResponseTO<InventoryResponseTO> responseTO = new ResponseTO<>();
-		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByCityName(city, startPage, size);
+		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByCityName(city);
 		responseTO.setData(vehicleList);
 		return new ResponseEntity<>(responseTO, HttpStatus.OK);
 	}
 
 	@GetMapping("/price")
 	public ResponseEntity<ResponseTO<InventoryResponseTO>> filterByPriceRange(@RequestParam("minPrice") Long minPrice,
-			@RequestParam("maxPrice") Long maxPrice, @RequestParam("startPage") Long startPage,
-			@RequestParam("size") Long size) throws RecordNotFoundException {
+			@RequestParam("maxPrice") Long maxPrice) throws RecordNotFoundException {
 
 		ResponseTO<InventoryResponseTO> responseTO = new ResponseTO<>();
-		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByPriceRange(minPrice, maxPrice,
-				startPage, size);
+		InventoryResponseTO vehicleList = vehicleCategoryFiltersDelegate.filterByPriceRange(minPrice, maxPrice);
 		responseTO.setData(vehicleList);
 		return new ResponseEntity<>(responseTO, HttpStatus.OK);
 	}

@@ -15,38 +15,34 @@ public class VehicleCategoryFiltersDelegate {
 	@Autowired
 	private VehicleCategoryFiltersService vehicleCategoryFiltersService;
 
-	public InventoryResponseTO filterByTransmissionType(boolean manualTransmission, boolean autoTransmission,
-			Long startPage, Long size) throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByTransmissionType(manualTransmission, autoTransmission, startPage,
-				size);
-	}
-
-	public InventoryResponseTO filterByFuelType(boolean petrol, boolean diesel, Long startPage, Long size)
+	public InventoryResponseTO filterByTransmissionType(boolean manualTransmission, boolean autoTransmission)
 			throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByFuelType(petrol, diesel, startPage, size);
+		return vehicleCategoryFiltersService.filterByTransmissionType(manualTransmission, autoTransmission);
 	}
 
-	public InventoryResponseTO filterBySegmentType(boolean suv, boolean sedan, boolean hatchback, Long startPage,
-			Long size) throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterBySegmentType(suv, sedan, hatchback, startPage, size);
+	public InventoryResponseTO filterByFuelType(boolean petrol, boolean diesel) throws RecordNotFoundException {
+		return vehicleCategoryFiltersService.filterByFuelType(petrol, diesel);
 	}
 
-	public InventoryResponseTO filterByBrandName(BrandFilterRequestDTO brands, Long startPage, Long size)
+	public InventoryResponseTO filterBySegmentType(boolean suv, boolean sedan, boolean hatchback)
 			throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByBrandName(brands, startPage, size);
+		return vehicleCategoryFiltersService.filterBySegmentType(suv, sedan, hatchback);
 	}
 
-	public InventoryResponseTO filterByCityName(String city, Long startPage, Long size) throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByCityName(city, startPage, size);
+	public InventoryResponseTO filterByBrandName(BrandFilterRequestDTO brands) throws RecordNotFoundException {
+		return vehicleCategoryFiltersService.filterByBrandName(brands);
 	}
 
-	public InventoryResponseTO filterByPriceRange(Long minPrice, Long maxPrice, Long startPage, Long size)
-			throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByPriceRange(minPrice, maxPrice, startPage, size);
+	public InventoryResponseTO filterByCityName(String city) throws RecordNotFoundException {
+		return vehicleCategoryFiltersService.filterByCityName(city);
+	}
+
+	public InventoryResponseTO filterByPriceRange(Long minPrice, Long maxPrice) throws RecordNotFoundException {
+		return vehicleCategoryFiltersService.filterByPriceRange(minPrice, maxPrice);
 	}
 
 	public InventoryResponseTO vehicleListingFilters(VehicleListingFiltersRequestDTO vehicleFilters, Long startPage,
 			Long size) throws RecordNotFoundException {
-		return vehicleCategoryFiltersService.filterByPriceRange(vehicleFilters, startPage, size);
+		return vehicleCategoryFiltersService.vehicleListingFilters(vehicleFilters, startPage, size);
 	}
 }

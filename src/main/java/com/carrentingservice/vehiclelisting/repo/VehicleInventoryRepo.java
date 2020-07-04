@@ -19,30 +19,41 @@ import com.carrentingservice.vehiclelisting.domain.VehicleInventoryEntity;
 @Repository
 public interface VehicleInventoryRepo extends JpaRepository<VehicleInventoryEntity, String> {
 
-	public Page<VehicleInventoryEntity> findById(String id, Pageable page);
+	public Page<VehicleInventoryEntity> findByIdWithPaging(String id, Pageable page);
 
-	public Page<VehicleInventoryEntity> findByTransmissionType(TransmissionTypeEntity transmissionType,
-			Pageable pageData);
+	public List<VehicleInventoryEntity> findByTransmissionType(TransmissionTypeEntity transmissionType);
 
-	public Page<VehicleInventoryEntity> findByFuelType(FuelTypeEntity fuelTypeEntity, Pageable pageData);
+	@Query("select veh from VehicleInventoryEntity veh where veh.transmissionType in (:transmissionType1, :transmissionType2)")
+	public List<VehicleInventoryEntity> findByTransmissionType(
+			@Param("transmissionType1") TransmissionTypeEntity transmissionType1,
+			@Param("transmissionType2") TransmissionTypeEntity transmissionType2);
 
-	public Page<VehicleInventoryEntity> findByCarType(CarTypeEntity carTypeEntity, Pageable pageData);
+	public List<VehicleInventoryEntity> findByFuelType(FuelTypeEntity fuelTypeEntity);
+
+	@Query("select veh from VehicleInventoryEntity veh where veh.fuelType in (:fuelTypeEntity1, :fuelTypeEntity2)")
+	public List<VehicleInventoryEntity> findByFuelType(@Param("fuelType1") FuelTypeEntity fuelTypeEntity1,
+			@Param("fuelType2") FuelTypeEntity fuelTypeEntity2);
+
+	public List<VehicleInventoryEntity> findByCarType(CarTypeEntity carTypeEntity);
 
 	@Query("select veh from VehicleInventoryEntity veh where veh.carType in (:carTypeEntity1, :carTypeEntity2)")
-	public Page<VehicleInventoryEntity> findByMultipleCarTypes(@Param("carTypeEntity1") CarTypeEntity carTypeEntity1,
-			@Param("carTypeEntity2") CarTypeEntity carTypeEntity2, Pageable pageData);
+	public List<VehicleInventoryEntity> findByMultipleCarTypes(@Param("carTypeEntity1") CarTypeEntity carTypeEntity1,
+			@Param("carTypeEntity2") CarTypeEntity carTypeEntity2);
+
+	@Query("select veh from VehicleInventoryEntity veh where veh.carType in (:carTypeEntity1, :carTypeEntity2, :carTypeEntity3)")
+	public List<VehicleInventoryEntity> findByMultipleCarTypes(@Param("carTypeEntity1") CarTypeEntity carTypeEntity1,
+			@Param("carTypeEntity2") CarTypeEntity carTypeEntity2,
+			@Param("carTypeEntity3") CarTypeEntity carTypeEntity3);
 
 	@Query("select veh from VehicleInventoryEntity veh where veh.producer in (:producersList)")
-	public Page<VehicleInventoryEntity> findByProducer(@Param("producersList") List<ProducerTypeEntity> producersList,
-			Pageable pageData);
+	public List<VehicleInventoryEntity> findByProducer(@Param("producersList") List<ProducerTypeEntity> producersList);
 
 	@Query("select veh from VehicleInventoryEntity veh where veh.id in (:vehicleIdList)")
-	public Page<VehicleInventoryEntity> findByIdList(@Param("vehicleIdList") List<String> vehicleIdList,
-			Pageable pageData);
+	public List<VehicleInventoryEntity> findByIdList(@Param("vehicleIdList") List<String> vehicleIdList);
 
 	@Query("select veh from VehicleInventoryEntity veh where veh.priceMaster BETWEEN :minPrice AND :maxPrice")
-	public Page<VehicleInventoryEntity> findByPriceRange(@Param("minPrice") PriceMasterEntity minPrice,
-			@Param("maxPrice") PriceMasterEntity maxPrice, Pageable pageData);
+	public List<VehicleInventoryEntity> findByPriceRange(@Param("minPrice") PriceMasterEntity minPrice,
+			@Param("maxPrice") PriceMasterEntity maxPrice);
 
 	@Query("select veh from VehicleInventoryEntity veh where veh.id in (:vehicleIds)")
 	public Page<VehicleInventoryEntity> findAllById(@Param("vehicleIds") List<String> vehicleIds, Pageable pageData);
