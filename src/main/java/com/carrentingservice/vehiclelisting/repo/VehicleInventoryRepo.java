@@ -19,7 +19,7 @@ import com.carrentingservice.vehiclelisting.domain.VehicleInventoryEntity;
 @Repository
 public interface VehicleInventoryRepo extends JpaRepository<VehicleInventoryEntity, String> {
 
-	public Page<VehicleInventoryEntity> findByIdWithPaging(String id, Pageable page);
+	public Page<VehicleInventoryEntity> findById(String id, Pageable page);
 
 	public List<VehicleInventoryEntity> findByTransmissionType(TransmissionTypeEntity transmissionType);
 
@@ -31,8 +31,8 @@ public interface VehicleInventoryRepo extends JpaRepository<VehicleInventoryEnti
 	public List<VehicleInventoryEntity> findByFuelType(FuelTypeEntity fuelTypeEntity);
 
 	@Query("select veh from VehicleInventoryEntity veh where veh.fuelType in (:fuelTypeEntity1, :fuelTypeEntity2)")
-	public List<VehicleInventoryEntity> findByFuelType(@Param("fuelType1") FuelTypeEntity fuelTypeEntity1,
-			@Param("fuelType2") FuelTypeEntity fuelTypeEntity2);
+	public List<VehicleInventoryEntity> findByFuelType(@Param("fuelTypeEntity1") FuelTypeEntity fuelTypeEntity1,
+			@Param("fuelTypeEntity2") FuelTypeEntity fuelTypeEntity2);
 
 	public List<VehicleInventoryEntity> findByCarType(CarTypeEntity carTypeEntity);
 
