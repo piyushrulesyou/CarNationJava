@@ -202,89 +202,39 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 	@Override
 	public InventoryResponseTO vehicleListingFilters(VehicleListingFiltersRequestDTO vehicleFilters, Long startPage,
 			Long size) throws RecordNotFoundException {
+		if (allFiltersFalse(vehicleFilters)) {
+			return vehicleInventoryServiceImpl.getVehicleInventory(startPage, size);
+		}
 		Integer totalFilters = 0;
 		HashMap<String, Integer> vehicleMap = new HashMap<>();
 		if (vehicleFilters.isTransmission()) {
 			totalFilters++;
-			List<VehicleInventoryDTO> response = filterByTransmissionType(vehicleFilters.isManualTransmission(),
-					vehicleFilters.isAutomaticTransmission()).getListVehicleDTO();
-			for (VehicleInventoryDTO vehicle : response) {
-				if (!vehicleMap.containsKey(vehicle.getId())) {
-					vehicleMap.put(vehicle.getId(), 1);
-				} else {
-					int value = vehicleMap.get(vehicle.getId()) + 1;
-					vehicleMap.replace(vehicle.getId(), value);
-				}
-			}
+			transmissionMethod(vehicleFilters, vehicleMap);
 		}
 		if (vehicleFilters.isFuel()) {
 			totalFilters++;
-			List<VehicleInventoryDTO> response = filterByFuelType(vehicleFilters.isPetrolFuel(),
-					vehicleFilters.isDieselFuel()).getListVehicleDTO();
-			for (VehicleInventoryDTO vehicle : response) {
-				if (!vehicleMap.containsKey(vehicle.getId())) {
-					vehicleMap.put(vehicle.getId(), 1);
-				} else {
-					int value = vehicleMap.get(vehicle.getId()) + 1;
-					vehicleMap.replace(vehicle.getId(), value);
-				}
-			}
+			fuelMethod(vehicleFilters, vehicleMap);
 		}
 		if (vehicleFilters.isSegment()) {
 			totalFilters++;
-			List<VehicleInventoryDTO> response = filterBySegmentType(vehicleFilters.isSuvSegment(),
-					vehicleFilters.isSedanSegment(), vehicleFilters.isHatchBackSegment()).getListVehicleDTO();
-			for (VehicleInventoryDTO vehicle : response) {
-				if (!vehicleMap.containsKey(vehicle.getId())) {
-					vehicleMap.put(vehicle.getId(), 1);
-				} else {
-					int value = vehicleMap.get(vehicle.getId()) + 1;
-					vehicleMap.replace(vehicle.getId(), value);
-				}
-			}
+			segmentMethod(vehicleFilters, vehicleMap);
 		}
 		if (vehicleFilters.isCity()) {
 			totalFilters++;
-			List<VehicleInventoryDTO> response = filterByCityName(vehicleFilters.getCityName()).getListVehicleDTO();
-			for (VehicleInventoryDTO vehicle : response) {
-				if (!vehicleMap.containsKey(vehicle.getId())) {
-					vehicleMap.put(vehicle.getId(), 1);
-				} else {
-					int value = vehicleMap.get(vehicle.getId()) + 1;
-					vehicleMap.replace(vehicle.getId(), value);
-				}
-			}
+			cityMethod(vehicleFilters, vehicleMap);
 		}
 		if (vehicleFilters.isPrice()) {
 			totalFilters++;
-			List<VehicleInventoryDTO> response = filterByPriceRange(vehicleFilters.getMinPrice(),
-					vehicleFilters.getMaxPrice()).getListVehicleDTO();
-			for (VehicleInventoryDTO vehicle : response) {
-				if (!vehicleMap.containsKey(vehicle.getId())) {
-					vehicleMap.put(vehicle.getId(), 1);
-				} else {
-					int value = vehicleMap.get(vehicle.getId()) + 1;
-					vehicleMap.replace(vehicle.getId(), value);
-				}
-			}
+			priceMethod(vehicleFilters, vehicleMap);
 		}
 		if (vehicleFilters.isBrand()) {
 			totalFilters++;
-			List<VehicleInventoryDTO> response = filterByBrandName(
-					new BrandFilterRequestDTO(vehicleFilters.getBrands())).getListVehicleDTO();
-			for (VehicleInventoryDTO vehicle : response) {
-				if (!vehicleMap.containsKey(vehicle.getId())) {
-					vehicleMap.put(vehicle.getId(), 1);
-				} else {
-					int value = vehicleMap.get(vehicle.getId()) + 1;
-					vehicleMap.replace(vehicle.getId(), value);
-				}
-			}
+			brandMethod(vehicleFilters, vehicleMap);
 		}
 
 		if (vehicleMap.isEmpty()) {
 			throw new RecordNotFoundException(
-					"Error occured in method " + " filterByPriceRange() " + " of class " + this.getClass().getName()
+					"Error occured in method " + " vehicleListingFilters() " + " of class " + this.getClass().getName()
 							+ ". Exception code is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR_CODE
 							+ " and exception message is " + ErrorConstants.VEHICLE_INVENTORY_NOT_FOUND_ERROR + ".");
 		}
@@ -295,7 +245,94 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 				listID.add(me.getKey());
 			}
 		}
-
 		return vehicleInventoryServiceImpl.getVehicleInventoryByIdList(listID, startPage, size);
+	}
+
+	private void brandMethod(VehicleListingFiltersRequestDTO vehicleFilters, HashMap<String, Integer> vehicleMap)
+			throws RecordNotFoundException {
+		List<VehicleInventoryDTO> response = filterByBrandName(new BrandFilterRequestDTO(vehicleFilters.getBrands()))
+				.getListVehicleDTO();
+		for (VehicleInventoryDTO vehicle : response) {
+			if (!vehicleMap.containsKey(vehicle.getId())) {
+				vehicleMap.put(vehicle.getId(), 1);
+			} else {
+				int value = vehicleMap.get(vehicle.getId()) + 1;
+				vehicleMap.replace(vehicle.getId(), value);
+			}
+		}
+	}
+
+	private void priceMethod(VehicleListingFiltersRequestDTO vehicleFilters, HashMap<String, Integer> vehicleMap)
+			throws RecordNotFoundException {
+		List<VehicleInventoryDTO> response = filterByPriceRange(vehicleFilters.getMinPrice(),
+				vehicleFilters.getMaxPrice()).getListVehicleDTO();
+		for (VehicleInventoryDTO vehicle : response) {
+			if (!vehicleMap.containsKey(vehicle.getId())) {
+				vehicleMap.put(vehicle.getId(), 1);
+			} else {
+				int value = vehicleMap.get(vehicle.getId()) + 1;
+				vehicleMap.replace(vehicle.getId(), value);
+			}
+		}
+	}
+
+	private void cityMethod(VehicleListingFiltersRequestDTO vehicleFilters, HashMap<String, Integer> vehicleMap)
+			throws RecordNotFoundException {
+		List<VehicleInventoryDTO> response = filterByCityName(vehicleFilters.getCityName()).getListVehicleDTO();
+		for (VehicleInventoryDTO vehicle : response) {
+			if (!vehicleMap.containsKey(vehicle.getId())) {
+				vehicleMap.put(vehicle.getId(), 1);
+			} else {
+				int value = vehicleMap.get(vehicle.getId()) + 1;
+				vehicleMap.replace(vehicle.getId(), value);
+			}
+		}
+	}
+
+	private void segmentMethod(VehicleListingFiltersRequestDTO vehicleFilters, HashMap<String, Integer> vehicleMap)
+			throws RecordNotFoundException {
+		List<VehicleInventoryDTO> response = filterBySegmentType(vehicleFilters.isSuvSegment(),
+				vehicleFilters.isSedanSegment(), vehicleFilters.isHatchBackSegment()).getListVehicleDTO();
+		for (VehicleInventoryDTO vehicle : response) {
+			if (!vehicleMap.containsKey(vehicle.getId())) {
+				vehicleMap.put(vehicle.getId(), 1);
+			} else {
+				int value = vehicleMap.get(vehicle.getId()) + 1;
+				vehicleMap.replace(vehicle.getId(), value);
+			}
+		}
+	}
+
+	private void fuelMethod(VehicleListingFiltersRequestDTO vehicleFilters, HashMap<String, Integer> vehicleMap)
+			throws RecordNotFoundException {
+		List<VehicleInventoryDTO> response = filterByFuelType(vehicleFilters.isPetrolFuel(),
+				vehicleFilters.isDieselFuel()).getListVehicleDTO();
+		for (VehicleInventoryDTO vehicle : response) {
+			if (!vehicleMap.containsKey(vehicle.getId())) {
+				vehicleMap.put(vehicle.getId(), 1);
+			} else {
+				int value = vehicleMap.get(vehicle.getId()) + 1;
+				vehicleMap.replace(vehicle.getId(), value);
+			}
+		}
+	}
+
+	private void transmissionMethod(VehicleListingFiltersRequestDTO vehicleFilters, HashMap<String, Integer> vehicleMap)
+			throws RecordNotFoundException {
+		List<VehicleInventoryDTO> response = filterByTransmissionType(vehicleFilters.isManualTransmission(),
+				vehicleFilters.isAutomaticTransmission()).getListVehicleDTO();
+		for (VehicleInventoryDTO vehicle : response) {
+			if (!vehicleMap.containsKey(vehicle.getId())) {
+				vehicleMap.put(vehicle.getId(), 1);
+			} else {
+				int value = vehicleMap.get(vehicle.getId()) + 1;
+				vehicleMap.replace(vehicle.getId(), value);
+			}
+		}
+	}
+
+	private boolean allFiltersFalse(VehicleListingFiltersRequestDTO vehicleFilters) {
+		return (!vehicleFilters.isBrand() && !vehicleFilters.isCity() && !vehicleFilters.isFuel()
+				&& !vehicleFilters.isPrice() && !vehicleFilters.isSegment() && !vehicleFilters.isTransmission());
 	}
 }
