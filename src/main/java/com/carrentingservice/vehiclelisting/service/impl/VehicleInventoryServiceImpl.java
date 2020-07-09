@@ -100,6 +100,7 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		return inventoryDetails;
 	}
 
+	@Override
 	public InventoryResponseTO getVehicleInventoryByIdList(List<String> vehicleIds, Long startPage, Long size)
 			throws RecordNotFoundException {
 		Pageable pageData = PageRequest.of(startPage.intValue(), size.intValue());

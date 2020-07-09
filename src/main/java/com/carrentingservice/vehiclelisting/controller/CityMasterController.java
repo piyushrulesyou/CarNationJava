@@ -27,4 +27,12 @@ public class CityMasterController {
 		return new ResponseEntity<>(responseTO, HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/get-active-cities")
+	public ResponseEntity<ResponseTO<CityMasterResponseDTO>> getActiveCities() throws RecordNotFoundException {
+		ResponseTO<CityMasterResponseDTO> responseTO = new ResponseTO<>();
+		CityMasterResponseDTO cityMasterResponseTO = cityMasterDelegate.getActiveCities();
+		responseTO.setData(cityMasterResponseTO);
+		return new ResponseEntity<>(responseTO, HttpStatus.OK);
+	}
+
 }

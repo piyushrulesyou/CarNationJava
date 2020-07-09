@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class CityMasterResponseDTO {
 
 	private List<CityMasterDTO> cities;
+	private List<CityMasterDTO> activeCities;
 }

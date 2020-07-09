@@ -26,13 +26,14 @@ import com.carrentingservice.vehiclelisting.exceptions.RecordNotFoundException;
 import com.carrentingservice.vehiclelisting.repo.InventoryCityMasterRepo;
 import com.carrentingservice.vehiclelisting.repo.VehicleInventoryRepo;
 import com.carrentingservice.vehiclelisting.service.VehicleCategoryFiltersService;
+import com.carrentingservice.vehiclelisting.service.VehicleInventoryService;
 import com.carrentingservice.vehiclelisting.service.mappers.VehicleInventoryMapper;
 
 @Service
 public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFiltersService {
 
 	@Autowired
-	private VehicleInventoryServiceImpl vehicleInventoryServiceImpl;
+	private VehicleInventoryService vehicleInventoryService;
 
 	@Autowired
 	private VehicleInventoryRepo vehicleInventoryRepo;
@@ -203,7 +204,7 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 	public InventoryResponseTO vehicleListingFilters(VehicleListingFiltersRequestDTO vehicleFilters, Long startPage,
 			Long size) throws RecordNotFoundException {
 		if (allFiltersFalse(vehicleFilters)) {
-			return vehicleInventoryServiceImpl.getVehicleInventory(startPage, size);
+			return vehicleInventoryService.getVehicleInventory(startPage, size);
 		}
 		Integer totalFilters = 0;
 		HashMap<String, Integer> vehicleMap = new HashMap<>();
@@ -245,7 +246,7 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 				listID.add(me.getKey());
 			}
 		}
-		return vehicleInventoryServiceImpl.getVehicleInventoryByIdList(listID, startPage, size);
+		return vehicleInventoryService.getVehicleInventoryByIdList(listID, startPage, size);
 	}
 
 	private void brandMethod(VehicleListingFiltersRequestDTO vehicleFilters, HashMap<String, Integer> vehicleMap)

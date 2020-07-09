@@ -1,5 +1,7 @@
 package com.carrentingservice.vehiclelisting.service;
 
+import java.util.List;
+
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryRequestDTO;
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryResponseTO;
 import com.carrentingservice.vehiclelisting.exceptions.RecordNotFoundException;
@@ -12,4 +14,6 @@ public interface VehicleInventoryService {
 
 	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails);
 
+	public InventoryResponseTO getVehicleInventoryByIdList(List<String> vehicleIds, Long startPage, Long size)
+			throws RecordNotFoundException;
 }

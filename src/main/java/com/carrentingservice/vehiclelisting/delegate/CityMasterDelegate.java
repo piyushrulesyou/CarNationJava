@@ -17,4 +17,8 @@ public class CityMasterDelegate {
 		return cityMasterService.findAllCities();
 	}
 
+	public CityMasterResponseDTO getActiveCities() throws RecordNotFoundException {
+		return cityMasterService.findActiveCities();
+	}
+
 }

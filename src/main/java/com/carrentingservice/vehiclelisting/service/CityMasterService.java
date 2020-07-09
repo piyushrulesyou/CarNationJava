@@ -10,4 +10,6 @@ public interface CityMasterService {
 
 	public CityMasterResponseDTO findAllCities() throws RecordNotFoundException;
 
+	public CityMasterResponseDTO findActiveCities() throws RecordNotFoundException;
+
 }
