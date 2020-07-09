@@ -279,6 +279,8 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 
 	private void cityMethod(VehicleListingFiltersRequestDTO vehicleFilters, HashMap<String, Integer> vehicleMap)
 			throws RecordNotFoundException {
+		if (vehicleFilters.getCityName() == null || vehicleFilters.getCityName().isEmpty())
+			vehicleFilters.setCityName("AGA");
 		List<VehicleInventoryDTO> response = filterByCityName(vehicleFilters.getCityName()).getListVehicleDTO();
 		for (VehicleInventoryDTO vehicle : response) {
 			if (!vehicleMap.containsKey(vehicle.getId())) {
