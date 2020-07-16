@@ -240,7 +240,7 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 
 		List<String> listID = new ArrayList<>();
 		for (Map.Entry<String, Integer> me : vehicleMap.entrySet()) {
-			if (me.getValue().equals(totalFilters + 1)) {
+			if (me.getValue().equals(totalFilters)) {
 				listID.add(me.getKey());
 			}
 		}
