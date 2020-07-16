@@ -208,6 +208,8 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 		}
 		Integer totalFilters = 0;
 		HashMap<String, Integer> vehicleMap = new HashMap<>();
+		totalFilters++;
+		cityMethod(vehicleFilters, vehicleMap);
 		if (vehicleFilters.isTransmission()) {
 			totalFilters++;
 			transmissionMethod(vehicleFilters, vehicleMap);
@@ -219,10 +221,6 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 		if (vehicleFilters.isSegment()) {
 			totalFilters++;
 			segmentMethod(vehicleFilters, vehicleMap);
-		}
-		if (vehicleFilters.isCity()) {
-			totalFilters++;
-			cityMethod(vehicleFilters, vehicleMap);
 		}
 		if (vehicleFilters.isPrice()) {
 			totalFilters++;
@@ -242,7 +240,7 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 
 		List<String> listID = new ArrayList<>();
 		for (Map.Entry<String, Integer> me : vehicleMap.entrySet()) {
-			if (me.getValue().equals(totalFilters)) {
+			if (me.getValue().equals(totalFilters + 1)) {
 				listID.add(me.getKey());
 			}
 		}
