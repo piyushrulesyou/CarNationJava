@@ -333,7 +333,7 @@ public class VehicleCategoryFiltersServiceImpl implements VehicleCategoryFilters
 	}
 
 	private boolean allFiltersFalse(VehicleListingFiltersRequestDTO vehicleFilters) {
-		return (!vehicleFilters.isBrand() && !vehicleFilters.isCity() && !vehicleFilters.isFuel()
+		return (!vehicleFilters.isBrand() && vehicleFilters.getCityName() == null && !vehicleFilters.isFuel()
 				&& !vehicleFilters.isPrice() && !vehicleFilters.isSegment() && !vehicleFilters.isTransmission());
 	}
 }
