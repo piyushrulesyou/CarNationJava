@@ -1,5 +1,6 @@
 package com.carrentingservice.vehiclelisting.service.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.carrentingservice.vehiclelisting.constants.ErrorConstants;
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryRequestDTO;
@@ -32,6 +34,7 @@ import com.carrentingservice.vehiclelisting.repo.InventoryCityMasterRepo;
 import com.carrentingservice.vehiclelisting.repo.InventoryColorMasterRepo;
 import com.carrentingservice.vehiclelisting.repo.TenurePriceMasterRepo;
 import com.carrentingservice.vehiclelisting.repo.VehicleInventoryRepo;
+import com.carrentingservice.vehiclelisting.service.AWSService;
 import com.carrentingservice.vehiclelisting.service.VehicleInventoryService;
 import com.carrentingservice.vehiclelisting.service.mappers.VehicleInventoryMapper;
 
@@ -52,6 +55,9 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 
 	@Autowired
 	private TenurePriceMasterRepo tenurePriceMasterRepo;
+	
+	@Autowired
+	private AWSService awsService;
 
 	@Override
 	public InventoryResponseTO getVehicleInventory(Long startPage, Long size) throws RecordNotFoundException {
@@ -90,13 +96,17 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 
 	@Override
 	@Transactional(rollbackOn = Exception.class)
-	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails) {
+	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails) throws IOException {
 
-		VehicleInventoryEntity vehicleInventoryEntity = mapVehicleDtoToEntity(inventoryDetails);
+		inventoryDetails = uploadImageToS3(inventoryDetails);
+		TenurePriceMasterEntity tenurePriceMaster = tenurePriceMasterRepo
+				.save(prepareTenurePriceEntity(inventoryDetails));
+		VehicleInventoryEntity vehicleInventoryEntity = mapVehicleDtoToEntity(inventoryDetails, tenurePriceMaster);
 		vehicleInventoryRepo.save(vehicleInventoryEntity);
+		inventoryDetails.setFullSizeImage(null);
+		inventoryDetails.setSmallSizeImage(null);
 		inventoryCityMasterRepo.saveAll(prepareInventoryCityEntity(inventoryDetails));
 		inventoryColorMasterRepo.saveAll(prepareInventoryColorEntity(inventoryDetails));
-		tenurePriceMasterRepo.save(prepareTenurePriceEntity(inventoryDetails));
 		return inventoryDetails;
 	}
 
@@ -116,6 +126,16 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		inventoryTO.setTotalPages(vehicleEntityList.getTotalPages());
 		inventoryTO.setTotalEnteries(vehicleEntityList.getTotalElements());
 		return inventoryTO;
+	}
+	
+	private InventoryRequestDTO uploadImageToS3(InventoryRequestDTO inventoryDetails) throws IOException {
+		List<MultipartFile> multipartFileList = new ArrayList<>();
+		multipartFileList.add(inventoryDetails.getSmallSizeImage());
+		multipartFileList.add(inventoryDetails.getFullSizeImage());
+		List<String> carImageS3URL = awsService.uploadFilesToS3(multipartFileList);
+		inventoryDetails.setSmallSizeImageURL(carImageS3URL.get(0));
+		inventoryDetails.setFullSizeImageURL(carImageS3URL.get(1));
+		return inventoryDetails;
 	}
 
 	private TenurePriceMasterEntity prepareTenurePriceEntity(InventoryRequestDTO inventoryDetails) {
@@ -155,7 +175,7 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		return listCityEntity;
 	}
 
-	private VehicleInventoryEntity mapVehicleDtoToEntity(InventoryRequestDTO inventoryDetails) {
+	private VehicleInventoryEntity mapVehicleDtoToEntity(InventoryRequestDTO inventoryDetails, TenurePriceMasterEntity tenurePriceMaster) {
 		VehicleInventoryEntity vehicleInventoryEntity = new VehicleInventoryEntity();
 		vehicleInventoryEntity.setId(inventoryDetails.getId());
 		vehicleInventoryEntity.setModel(inventoryDetails.getModel());
@@ -166,10 +186,11 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		vehicleInventoryEntity.setSeats(inventoryDetails.getSeats());
 		vehicleInventoryEntity.setProducer(new ProducerTypeEntity(inventoryDetails.getProducer()));
 		vehicleInventoryEntity.setSortOrder(inventoryDetails.getSortOrder());
-		vehicleInventoryEntity.setFullSizeImage(inventoryDetails.getFullSizeImage());
-		vehicleInventoryEntity.setSmallSizeImage(inventoryDetails.getSmallSizeImage());
+		vehicleInventoryEntity.setFullSizeImage(inventoryDetails.getFullSizeImageURL());
+		vehicleInventoryEntity.setSmallSizeImage(inventoryDetails.getSmallSizeImageURL());
 		vehicleInventoryEntity.setPopular(inventoryDetails.isPopular());
 		vehicleInventoryEntity.setExtraKmCharge(inventoryDetails.getExtraKmCharge());
+		vehicleInventoryEntity.setTenureMaster(tenurePriceMaster);
 		vehicleInventoryEntity.setPriceMaster(new PriceMasterEntity(inventoryDetails.getPriceMaster()));
 		vehicleInventoryEntity.setInsuranceCost(inventoryDetails.getInsuranceCost());
 		vehicleInventoryEntity.setSecurityDeposit(inventoryDetails.getSecurityDeposit());

@@ -3,6 +3,8 @@ package com.carrentingservice.vehiclelisting.controller.dto;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,8 +24,10 @@ public class InventoryRequestDTO {
 	private String seats;
 	private String producer;
 	private long sortOrder;
-	private String fullSizeImage;
-	private String smallSizeImage;
+	private MultipartFile fullSizeImage;
+	private MultipartFile smallSizeImage;
+	private String fullSizeImageURL;
+	private String smallSizeImageURL;
 	private boolean isPopular;
 	private long extraKmCharge;
 	private long priceMaster;
@@ -31,7 +35,7 @@ public class InventoryRequestDTO {
 	private List<String> cityMaster;
 	private long securityDeposit;
 	private boolean showVariant;
-	private List<Long> tenureMaster;
+	private List<Double> tenureMaster;
 	private String createdBy;
 	private Date createdDate;
 	private String modifiedBy;

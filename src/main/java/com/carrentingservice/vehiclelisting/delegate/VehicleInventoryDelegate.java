@@ -1,5 +1,7 @@
 package com.carrentingservice.vehiclelisting.delegate;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +24,7 @@ public class VehicleInventoryDelegate {
 		return vehicleInventoryService.getVehicleInventoryById(vehicleId);
 	}
 
-	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails) {
+	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails) throws IOException {
 		return vehicleInventoryService.addInventory(inventoryDetails);
 	}
 }

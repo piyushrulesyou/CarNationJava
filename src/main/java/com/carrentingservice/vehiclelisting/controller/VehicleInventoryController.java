@@ -1,9 +1,12 @@
 package com.carrentingservice.vehiclelisting.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,7 +47,7 @@ public class VehicleInventoryController {
 
 	@PostMapping(value = "/add-inventory")
 	public ResponseEntity<ResponseTO<InventoryRequestDTO>> addInventory(
-			@RequestBody InventoryRequestDTO inventoryDetails) {
+			@ModelAttribute InventoryRequestDTO inventoryDetails) throws IOException {
 		ResponseTO<InventoryRequestDTO> responseTO = new ResponseTO<>();
 		InventoryRequestDTO addInventory = vehicleInventoryDelegate.addInventory(inventoryDetails);
 		responseTO.setData(addInventory);
