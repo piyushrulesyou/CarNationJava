@@ -145,6 +145,7 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		List<String> carImageS3URL = awsService.uploadFilesToS3(multipartFileList);
 		System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+		System.out.println(multipartFileList);
 		System.out.println("cccccccccccccccccccccccccccccccccc " + carImageS3URL);
 		inventoryDetails.setSmallSizeImageURL(carImageS3URL.get(0));
 		inventoryDetails.setFullSizeImageURL(carImageS3URL.get(1));
