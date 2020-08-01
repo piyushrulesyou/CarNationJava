@@ -47,16 +47,29 @@ public class AWSServiceImpl implements AWSService {
 	@Override
 	public List<String> uploadFilesToS3(List<MultipartFile> carImages) throws IOException {
 		List<String> carImagesURL = new ArrayList<>();
+		System.out.println("**************11111111111111");
 		try {
+			System.out.println("------------------2222222222222222");
 			for (MultipartFile multipartFile : carImages) {
+				System.out.println("------------------333333333333333333333");
 				String imageURL = "";
+				System.out.println("------------------444444444444444444444");
 				File file = convertMultipartFileToFile(multipartFile);
+				System.out.println("------------------555555555555555555");
+				System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"+file.getName());
 				String fileName = generateFileName(multipartFile);
+				System.out.println("()()()()()()()()() " + fileName);
+				System.out.println("------------------66666666666666666666666666");
+				System.out.println("------------------" + commonConfiguration.getS3BucketName());
 				s3Client.putObject(new PutObjectRequest(commonConfiguration.getS3BucketName(), fileName, file)
 						.withCannedAcl(CannedAccessControlList.PublicRead));
+				System.out.println("------------------7777777777777777777777777");
 				imageURL = commonConfiguration.getS3BucketURL() + fileName;
+				System.out.println("------------------88888888888888888888888888888888888");
 				file.delete();
+				System.out.println("------------------99999999999999999999999999999999");
 				carImagesURL.add(imageURL);
+				System.out.println("------------------10101010101010101001001");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

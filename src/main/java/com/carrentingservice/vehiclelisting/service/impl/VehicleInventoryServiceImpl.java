@@ -98,9 +98,11 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 	@Transactional(rollbackOn = Exception.class)
 	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails, MultipartFile smallSizeImage,
 			MultipartFile fullSizeImage) throws IOException {
-
+		System.out.println("a1a1a11a1a1a1a1a1a1a1a1a1a11aa1a");
 		inventoryDetails = uploadImageToS3(inventoryDetails, smallSizeImage, fullSizeImage);
+		System.out.println("2b2b2b2b2bb2b2b2b2bb2b2b2bb2b2b2b2b2");
 		inventoryDetails = generateVehicleId(inventoryDetails);
+		System.out.println("3b3b3b3bb3b3b3b3b3b3b3b3b3bb3b3b3");
 		TenurePriceMasterEntity tenurePriceMaster = tenurePriceMasterRepo
 				.save(prepareTenurePriceEntity(inventoryDetails));
 		VehicleInventoryEntity vehicleInventoryEntity = mapVehicleDtoToEntity(inventoryDetails, tenurePriceMaster);
@@ -140,9 +142,13 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		List<MultipartFile> multipartFileList = new ArrayList<>();
 		multipartFileList.add(smallSizeImage);
 		multipartFileList.add(fullSizeImage);
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		List<String> carImageS3URL = awsService.uploadFilesToS3(multipartFileList);
+		System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+		System.out.println("cccccccccccccccccccccccccccccccccc " + carImageS3URL);
 		inventoryDetails.setSmallSizeImageURL(carImageS3URL.get(0));
 		inventoryDetails.setFullSizeImageURL(carImageS3URL.get(1));
+		System.out.println("dddddddddddddddddddddddddddddddddddddddd");
 		return inventoryDetails;
 	}
 
