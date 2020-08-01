@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryRequestDTO;
 import com.carrentingservice.vehiclelisting.controller.dto.InventoryResponseTO;
@@ -24,7 +25,7 @@ public class VehicleInventoryDelegate {
 		return vehicleInventoryService.getVehicleInventoryById(vehicleId);
 	}
 
-	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails) throws IOException {
-		return vehicleInventoryService.addInventory(inventoryDetails);
+	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails, MultipartFile smallSizeImage, MultipartFile fullSizeImage) throws IOException {
+		return vehicleInventoryService.addInventory(inventoryDetails, smallSizeImage, fullSizeImage);
 	}
 }

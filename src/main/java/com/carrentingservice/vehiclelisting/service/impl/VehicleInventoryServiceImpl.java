@@ -55,7 +55,7 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 
 	@Autowired
 	private TenurePriceMasterRepo tenurePriceMasterRepo;
-	
+
 	@Autowired
 	private AWSService awsService;
 
@@ -96,15 +96,15 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 
 	@Override
 	@Transactional(rollbackOn = Exception.class)
-	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails) throws IOException {
+	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails, MultipartFile smallSizeImage,
+			MultipartFile fullSizeImage) throws IOException {
 
-		inventoryDetails = uploadImageToS3(inventoryDetails);
+		inventoryDetails = uploadImageToS3(inventoryDetails, smallSizeImage, fullSizeImage);
+		inventoryDetails = generateVehicleId(inventoryDetails);
 		TenurePriceMasterEntity tenurePriceMaster = tenurePriceMasterRepo
 				.save(prepareTenurePriceEntity(inventoryDetails));
 		VehicleInventoryEntity vehicleInventoryEntity = mapVehicleDtoToEntity(inventoryDetails, tenurePriceMaster);
 		vehicleInventoryRepo.save(vehicleInventoryEntity);
-		inventoryDetails.setFullSizeImage(null);
-		inventoryDetails.setSmallSizeImage(null);
 		inventoryCityMasterRepo.saveAll(prepareInventoryCityEntity(inventoryDetails));
 		inventoryColorMasterRepo.saveAll(prepareInventoryColorEntity(inventoryDetails));
 		return inventoryDetails;
@@ -127,11 +127,19 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		inventoryTO.setTotalEnteries(vehicleEntityList.getTotalElements());
 		return inventoryTO;
 	}
-	
-	private InventoryRequestDTO uploadImageToS3(InventoryRequestDTO inventoryDetails) throws IOException {
+
+	private InventoryRequestDTO generateVehicleId(InventoryRequestDTO inventoryDetails) {
+		String vehicleId = inventoryDetails.getProducer().substring(0, 3) + inventoryDetails.getModel().substring(0, 3)
+				+ inventoryDetails.getFuelType();
+		inventoryDetails.setId(vehicleId);
+		return inventoryDetails;
+	}
+
+	private InventoryRequestDTO uploadImageToS3(InventoryRequestDTO inventoryDetails, MultipartFile smallSizeImage,
+			MultipartFile fullSizeImage) throws IOException {
 		List<MultipartFile> multipartFileList = new ArrayList<>();
-		multipartFileList.add(inventoryDetails.getSmallSizeImage());
-		multipartFileList.add(inventoryDetails.getFullSizeImage());
+		multipartFileList.add(smallSizeImage);
+		multipartFileList.add(fullSizeImage);
 		List<String> carImageS3URL = awsService.uploadFilesToS3(multipartFileList);
 		inventoryDetails.setSmallSizeImageURL(carImageS3URL.get(0));
 		inventoryDetails.setFullSizeImageURL(carImageS3URL.get(1));
@@ -175,7 +183,8 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		return listCityEntity;
 	}
 
-	private VehicleInventoryEntity mapVehicleDtoToEntity(InventoryRequestDTO inventoryDetails, TenurePriceMasterEntity tenurePriceMaster) {
+	private VehicleInventoryEntity mapVehicleDtoToEntity(InventoryRequestDTO inventoryDetails,
+			TenurePriceMasterEntity tenurePriceMaster) {
 		VehicleInventoryEntity vehicleInventoryEntity = new VehicleInventoryEntity();
 		vehicleInventoryEntity.setId(inventoryDetails.getId());
 		vehicleInventoryEntity.setModel(inventoryDetails.getModel());

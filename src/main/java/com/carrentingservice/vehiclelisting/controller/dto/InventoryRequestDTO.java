@@ -3,8 +3,6 @@ package com.carrentingservice.vehiclelisting.controller.dto;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +22,6 @@ public class InventoryRequestDTO {
 	private String seats;
 	private String producer;
 	private long sortOrder;
-	private MultipartFile fullSizeImage;
-	private MultipartFile smallSizeImage;
 	private String fullSizeImageURL;
 	private String smallSizeImageURL;
 	private boolean isPopular;
