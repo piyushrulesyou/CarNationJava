@@ -50,11 +50,13 @@ public class VehicleInventoryController {
 	@PostMapping(value = "/add-inventory")
 	public ResponseEntity<ResponseTO<InventoryRequestDTO>> addInventory(
 //			@RequestParam("smallSizeImage") MultipartFile smallSizeImage,
-			@RequestParam("fullSizeImage") MultipartFile fullSizeImage,
-			@RequestParam("vehicleInventory") String vehicleInventory) throws IOException {
+			@RequestParam("fullSizeImage") MultipartFile fullSizeImage
+//			@RequestParam("vehicleInventory") String vehicleInventory
+			) throws IOException {
 		ResponseTO<InventoryRequestDTO> responseTO = new ResponseTO<>();
-		InventoryRequestDTO inventoryDetails = new ObjectMapper().readValue(vehicleInventory,
-				InventoryRequestDTO.class);
+//		InventoryRequestDTO inventoryDetails = new ObjectMapper().readValue(vehicleInventory,
+//				InventoryRequestDTO.class);
+		InventoryRequestDTO inventoryDetails = new InventoryRequestDTO();
 		InventoryRequestDTO addInventory = vehicleInventoryDelegate.addInventory(inventoryDetails, fullSizeImage,
 				fullSizeImage);
 		responseTO.setData(addInventory);
