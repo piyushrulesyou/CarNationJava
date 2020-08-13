@@ -21,6 +21,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectResult;
 import com.carrentingservice.vehiclelisting.configuration.CommonConfiguration;
 import com.carrentingservice.vehiclelisting.service.AWSService;
 
@@ -61,8 +62,9 @@ public class AWSServiceImpl implements AWSService {
 				System.out.println("()()()()()()()()() " + fileName);
 				System.out.println("------------------66666666666666666666666666");
 				System.out.println("------------------" + commonConfiguration.getS3BucketName());
-				s3Client.putObject(new PutObjectRequest(commonConfiguration.getS3BucketName(), fileName, file)
+				PutObjectResult por = s3Client.putObject(new PutObjectRequest(commonConfiguration.getS3BucketName(), fileName, file)
 						.withCannedAcl(CannedAccessControlList.PublicRead));
+				System.out.println(por);
 				System.out.println("------------------7777777777777777777777777");
 				imageURL = commonConfiguration.getS3BucketURL() + fileName;
 				System.out.println("------------------88888888888888888888888888888888888");
