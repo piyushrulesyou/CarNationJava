@@ -131,6 +131,11 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 	}
 
 	private InventoryRequestDTO generateVehicleId(InventoryRequestDTO inventoryDetails) {
+		System.out.println(inventoryDetails);
+		System.out.println("1234"+inventoryDetails.getProducer().substring(0, 3));
+		System.out.println("1234"+inventoryDetails.getModel().substring(0, 3));
+		System.out.println("1234"+inventoryDetails.getFuelType());
+		
 		String vehicleId = inventoryDetails.getProducer().substring(0, 3) + inventoryDetails.getModel().substring(0, 3)
 				+ inventoryDetails.getFuelType();
 		inventoryDetails.setId(vehicleId);

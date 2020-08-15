@@ -52,33 +52,29 @@ public class AWSServiceImpl implements AWSService {
 	public List<String> uploadFilesToS3(List<MultipartFile> carImages) throws IOException {
 		List<String> carImagesURL = new ArrayList<>();
 		LOGGER.info("**************11111111111111");
-		try {
-			LOGGER.info("------------------2222222222222222");
-			for (MultipartFile multipartFile : carImages) {
-				LOGGER.info("------------------333333333333333333333");
-				String imageURL = "";
-				LOGGER.info("------------------444444444444444444444");
-				File file = convertMultipartFileToFile(multipartFile);
-				LOGGER.info("------------------555555555555555555");
-				LOGGER.info("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + file.getName());
-				String fileName = generateFileName(multipartFile);
-				LOGGER.info("()()()()()()()()() " + fileName);
-				LOGGER.info("------------------66666666666666666666666666");
-				LOGGER.info("------------------" + commonConfiguration.getS3BucketName());
-				PutObjectResult por = s3Client
-						.putObject(new PutObjectRequest(commonConfiguration.getS3BucketName(), fileName, file)
-								.withCannedAcl(CannedAccessControlList.PublicRead));
-				LOGGER.info(por);
-				LOGGER.info("------------------7777777777777777777777777");
-				imageURL = commonConfiguration.getS3BucketURL() + fileName;
-				LOGGER.info("------------------88888888888888888888888888888888888");
-				file.delete();
-				LOGGER.info("------------------99999999999999999999999999999999");
-				carImagesURL.add(imageURL);
-				LOGGER.info("------------------10101010101010101001001");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		LOGGER.info("------------------2222222222222222");
+		for (MultipartFile multipartFile : carImages) {
+			LOGGER.info("------------------333333333333333333333");
+			String imageURL = "";
+			LOGGER.info("------------------444444444444444444444");
+			File file = convertMultipartFileToFile(multipartFile);
+			LOGGER.info("------------------555555555555555555");
+			LOGGER.info("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + file.getName());
+			String fileName = generateFileName(multipartFile);
+			LOGGER.info("()()()()()()()()() " + fileName);
+			LOGGER.info("------------------66666666666666666666666666");
+			LOGGER.info("------------------" + commonConfiguration.getS3BucketName());
+			PutObjectResult por = s3Client
+					.putObject(new PutObjectRequest(commonConfiguration.getS3BucketName(), fileName, file)
+							.withCannedAcl(CannedAccessControlList.PublicRead));
+			LOGGER.info(por);
+			LOGGER.info("------------------7777777777777777777777777");
+			imageURL = commonConfiguration.getS3BucketURL() + fileName;
+			LOGGER.info("------------------88888888888888888888888888888888888");
+			file.delete();
+			LOGGER.info("------------------99999999999999999999999999999999");
+			carImagesURL.add(imageURL);
+			LOGGER.info("------------------10101010101010101001001");
 		}
 		return carImagesURL;
 	}
