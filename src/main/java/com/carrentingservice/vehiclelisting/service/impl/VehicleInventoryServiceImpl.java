@@ -201,6 +201,10 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		vehicleInventoryEntity.setInsuranceCost(inventoryDetails.getInsuranceCost());
 		vehicleInventoryEntity.setSecurityDeposit(inventoryDetails.getSecurityDeposit());
 		vehicleInventoryEntity.setShowVariant(inventoryDetails.isShowVariant());
+		vehicleInventoryEntity.setCreatedBy(inventoryDetails.getCreatedBy());
+		vehicleInventoryEntity.setCreatedDate(inventoryDetails.getCreatedDate());
+		vehicleInventoryEntity.setModifiedBy(inventoryDetails.getModifiedBy());
+		vehicleInventoryEntity.setModifiedDate(inventoryDetails.getModifiedDate());
 		return vehicleInventoryEntity;
 	}
 }
