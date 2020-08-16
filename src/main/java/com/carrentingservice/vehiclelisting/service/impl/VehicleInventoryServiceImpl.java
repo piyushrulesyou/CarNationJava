@@ -100,6 +100,8 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 			MultipartFile fullSizeImage) throws IOException {
 		inventoryDetails = uploadImageToS3(inventoryDetails, smallSizeImage, fullSizeImage);
 		System.out.println("111111111");
+		System.out.println(inventoryDetails);
+		System.out.println("151515151");
 		inventoryDetails = generateVehicleId(inventoryDetails);
 		System.out.println("222222222");
 		System.out.println(inventoryDetails.getId());
