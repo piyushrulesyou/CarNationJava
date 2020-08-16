@@ -98,13 +98,10 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 	@Transactional(rollbackOn = Exception.class)
 	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails, MultipartFile smallSizeImage,
 			MultipartFile fullSizeImage) throws IOException {
-		inventoryDetails = uploadImageToS3(inventoryDetails, smallSizeImage, fullSizeImage);
-		System.out.println(inventoryDetails);
-		inventoryDetails = generateVehicleId(inventoryDetails);
-		System.out.println(inventoryDetails.getId());
+		uploadImageToS3(inventoryDetails, smallSizeImage, fullSizeImage);
+		generateVehicleId(inventoryDetails);
 		TenurePriceMasterEntity tenurePriceMaster = tenurePriceMasterRepo
 				.save(prepareTenurePriceEntity(inventoryDetails));
-		System.out.println(tenurePriceMaster);
 		VehicleInventoryEntity vehicleInventoryEntity = mapVehicleDtoToEntity(inventoryDetails, tenurePriceMaster);
 		vehicleInventoryRepo.save(vehicleInventoryEntity);
 		inventoryCityMasterRepo.saveAll(prepareInventoryCityEntity(inventoryDetails));
@@ -130,21 +127,13 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		return inventoryTO;
 	}
 
-	private InventoryRequestDTO generateVehicleId(InventoryRequestDTO inventoryDetails) {
-		System.out.println("aaaaaa");
-		System.out.println(inventoryDetails.getProducer().substring(0, 3));
-		System.out.println("bbbbbb");
-		System.out.println(inventoryDetails.getModel().substring(0, 3));
-		System.out.println("cccccc");
-		System.out.println(inventoryDetails.getFuelType());
-		System.out.println("dddddd");
+	private void generateVehicleId(InventoryRequestDTO inventoryDetails) {
 		String vehicleId = inventoryDetails.getProducer().substring(0, 3) + inventoryDetails.getModel().substring(0, 3)
 				+ inventoryDetails.getFuelType();
 		inventoryDetails.setId(vehicleId);
-		return inventoryDetails;
 	}
 
-	private InventoryRequestDTO uploadImageToS3(InventoryRequestDTO inventoryDetails, MultipartFile smallSizeImage,
+	private void uploadImageToS3(InventoryRequestDTO inventoryDetails, MultipartFile smallSizeImage,
 			MultipartFile fullSizeImage) throws IOException {
 		List<MultipartFile> multipartFileList = new ArrayList<>();
 		multipartFileList.add(smallSizeImage);
@@ -152,7 +141,6 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 		List<String> carImageS3URL = awsService.uploadFilesToS3(multipartFileList);
 		inventoryDetails.setSmallSizeImageURL(carImageS3URL.get(0));
 		inventoryDetails.setFullSizeImageURL(carImageS3URL.get(1));
-		return inventoryDetails;
 	}
 
 	private TenurePriceMasterEntity prepareTenurePriceEntity(InventoryRequestDTO inventoryDetails) {
