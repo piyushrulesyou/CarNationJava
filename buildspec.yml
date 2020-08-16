@@ -2,19 +2,17 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto8
+      java: openjdk8
   pre_build:
     commands:
     - echo In the pre_build phase...
   build:
     commands:
     - echo Build started on `date`
+    - mvn package
   post_build:
     commands:
     - echo Build completed on `date`
-    - mvn package
-    - mv target/vehicle-listing-0.0.1-SNAPSHOT.jar vehicle-listing-0.0.1-SNAPSHOT.jar
 artifacts:
   files:
-  - vehicle-listing-0.0.1-SNAPSHOT.jar
-  - .ebextensions/**/*
+  - target/vehicle-listing-0.0.1-SNAPSHOT.jar
