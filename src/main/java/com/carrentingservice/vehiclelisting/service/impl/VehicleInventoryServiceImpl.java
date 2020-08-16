@@ -99,9 +99,15 @@ public class VehicleInventoryServiceImpl implements VehicleInventoryService {
 	public InventoryRequestDTO addInventory(InventoryRequestDTO inventoryDetails, MultipartFile smallSizeImage,
 			MultipartFile fullSizeImage) throws IOException {
 		inventoryDetails = uploadImageToS3(inventoryDetails, smallSizeImage, fullSizeImage);
+		System.out.println("111111111");
 		inventoryDetails = generateVehicleId(inventoryDetails);
+		System.out.println("222222222");
+		System.out.println(inventoryDetails.getId());
+		System.out.println("333333333");
 		TenurePriceMasterEntity tenurePriceMaster = tenurePriceMasterRepo
 				.save(prepareTenurePriceEntity(inventoryDetails));
+		System.out.println(tenurePriceMaster);
+		System.out.println("444444444");
 		VehicleInventoryEntity vehicleInventoryEntity = mapVehicleDtoToEntity(inventoryDetails, tenurePriceMaster);
 		vehicleInventoryRepo.save(vehicleInventoryEntity);
 		inventoryCityMasterRepo.saveAll(prepareInventoryCityEntity(inventoryDetails));
