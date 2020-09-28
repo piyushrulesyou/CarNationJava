@@ -14,3 +14,5 @@ https://github.com/piyushrulesyou/CarNationAngular
 `The link for the working website is:`
 <br>
 http://d9h6slvsg5zb.cloudfront.net/
+
+This project also contains the buildspec.yml file with the necessary commands to work with AWS CodeBuild.
